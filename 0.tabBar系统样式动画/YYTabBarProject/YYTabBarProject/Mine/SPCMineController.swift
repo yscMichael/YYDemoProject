@@ -1,0 +1,16 @@
+//
+//  SPCMineController.swift
+//  testApp
+//
+//  Created by 杨世川 on 2021/9/22.
+//
+
+import UIKit
+
+class SPCMineController: UIViewController {
+    //MARK:- Life Cycle -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.blue
+    }
+}
