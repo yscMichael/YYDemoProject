@@ -10,7 +10,8 @@ import UIKit
 //MARK:- 常量 -
 //49 + 34
 //64 + 34
-let SPCTabBarHeight: CGFloat = 64 + 34
+let SPCTabBarHeightBig: CGFloat = 64 + 34
+let SPCTabBarHeightSmall: CGFloat = 64
 let SPCTabCount: Int = 2
 let ScreenWidth = UIScreen.main.bounds.size.width
 let ScreenHeight = UIScreen.main.bounds.size.height
@@ -27,13 +28,11 @@ class SPCMainTabViewController: UITabBarController {
         super.viewDidLayoutSubviews()
         //1、tabbar高度修改
         var frame = self.tabBar.frame
-        frame.size.height = SPCTabBarHeight
+        frame.size.height = isPhoneX ? SPCTabBarHeightBig:SPCTabBarHeightSmall
         frame.origin.y = self.view.frame.size.height - frame.size.height
         self.tabBar.frame = frame
         self.tabBar.backgroundColor = UIColor.black
         self.tabBar.barStyle = UIBarStyle.black
-        print("viewDidLayoutSubviews")
-        print(self.tabBar.frame)
     }
     
     override func viewDidLoad() {
@@ -75,7 +74,8 @@ class SPCMainTabViewController: UITabBarController {
     
     func initHomeIcon() -> () {
         let centerX = Int(UIScreen.main.bounds.size.width)/SPCTabCount/2
-        let centerY = (SPCTabBarHeight - 34)/2
+        let height = isPhoneX ? SPCTabBarHeightBig:SPCTabBarHeightSmall
+        let centerY = (height - 34)/2
         
         self.tabBar.addSubview(self.homeImageView)
         self.tabBar.addSubview(self.lineView)

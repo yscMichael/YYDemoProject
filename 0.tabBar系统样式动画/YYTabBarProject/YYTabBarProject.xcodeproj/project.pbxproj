@@ -15,6 +15,7 @@
 		11A71A9C26FAD10E003D3743 /* SPCMainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A9B26FAD10E003D3743 /* SPCMainTabViewController.swift */; };
 		11A71AA026FAD13D003D3743 /* SPCHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A9F26FAD13D003D3743 /* SPCHomeController.swift */; };
 		11A71AA226FAD14D003D3743 /* SPCMineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71AA126FAD14D003D3743 /* SPCMineController.swift */; };
+		11A71AC926FC2CBB003D3743 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71AC826FC2CBB003D3743 /* Global.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		11A71A9B26FAD10E003D3743 /* SPCMainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCMainTabViewController.swift; sourceTree = "<group>"; };
 		11A71A9F26FAD13D003D3743 /* SPCHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCHomeController.swift; sourceTree = "<group>"; };
 		11A71AA126FAD14D003D3743 /* SPCMineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCMineController.swift; sourceTree = "<group>"; };
+		11A71AC826FC2CBB003D3743 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				11A71A7326FAD0EA003D3743 /* Assets.xcassets */,
 				11A71A7526FAD0EA003D3743 /* LaunchScreen.storyboard */,
 				11A71A7826FAD0EA003D3743 /* Info.plist */,
+				11A71AC826FC2CBB003D3743 /* Global.swift */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			files = (
 				11A71A6F26FAD0E9003D3743 /* ViewController.swift in Sources */,
 				11A71A6B26FAD0E9003D3743 /* AppDelegate.swift in Sources */,
+				11A71AC926FC2CBB003D3743 /* Global.swift in Sources */,
 				11A71A9C26FAD10E003D3743 /* SPCMainTabViewController.swift in Sources */,
 				11A71AA026FAD13D003D3743 /* SPCHomeController.swift in Sources */,
 				11A71AA226FAD14D003D3743 /* SPCMineController.swift in Sources */,
