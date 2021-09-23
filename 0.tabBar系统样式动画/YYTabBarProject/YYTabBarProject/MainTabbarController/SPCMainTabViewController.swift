@@ -34,59 +34,6 @@ class SPCMainTabViewController: UITabBarController {
         self.tabBar.barStyle = UIBarStyle.black
         print("viewDidLayoutSubviews")
         print(self.tabBar.frame)
-        //2、内部UITabBarButton的frame修改(这里修改不了,必须在内部修改)
-//        for btn in self.tabBar.subviews {
-//            if btn.isKind(of: NSClassFromString("UITabBarButton")!) {
-//                print("subviews=======+P")
-//                print(btn.frame)
-//                btn.layer.borderWidth = 1.0
-//                btn.layer.borderColor = UIColor.blue.cgColor
-//                //接着进行遍历
-//                for sub in btn.subviews {
-//                    if sub.isKind(of: NSClassFromString("UITabBarSwappableImageView")!) {
-//                        print("图片frame")
-//                        print(sub.frame)
-//                        //重新布局位置
-//                        var subFrame = sub.frame
-//                        subFrame.size.width = 21
-//                        subFrame.size.height = 21
-//                        subFrame.origin.x = 0
-//                        subFrame.origin.y = 0
-//                        sub.frame = subFrame
-//                    }else if sub.isKind(of: NSClassFromString("UITabBarButtonLabel")!){
-//                        print("label的frame")
-//                        print(sub.frame)
-//                    }
-//                }
-//            }
-//        }
-//        print(self.mineCtrl.tabBarItem.imageInsets)
-//        print(self.mineCtrl.tabBarItem.titlePositionAdjustment)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        //内部UITabBarButton的frame修改
-//        for btn in self.tabBar.subviews {
-//            if btn.isKind(of: NSClassFromString("UITabBarButton")!) {
-//                print("subviews=======+P")
-//                print(btn.frame)
-//                btn.layer.borderWidth = 1.0
-//                btn.layer.borderColor = UIColor.blue.cgColor
-//                //接着进行遍历
-//                for sub in btn.subviews {
-//                    if sub.isKind(of: NSClassFromString("UITabBarSwappableImageView")!) {
-//                        print("图片frame")
-//                        print(sub.frame)
-//                    }else if sub.isKind(of: NSClassFromString("UITabBarButtonLabel")!){
-//                        print("label的frame")
-//                        print(sub.frame)
-//                    }
-//                }
-//            }
-//        }
-//        print(self.mineCtrl.tabBarItem.imageInsets)
-//        print(self.mineCtrl.tabBarItem.titlePositionAdjustment)
     }
     
     override func viewDidLoad() {
@@ -115,14 +62,12 @@ class SPCMainTabViewController: UITabBarController {
         homeCtrl.tabBarItem.image = UIImage(named: "tabbar_icon_index_normal")?.withRenderingMode(.alwaysOriginal)
         homeCtrl.tabBarItem.selectedImage = UIImage(named: "tabbar_icon_index_selected")?.withRenderingMode(.alwaysOriginal)
         homeCtrl.tabBarItem.title = "首页"
-        
         //我的
         mineCtrl.tabBarItem.image = UIImage(named: "tabbar_icon_mine_normal")?.withRenderingMode(.alwaysOriginal)
         mineCtrl.tabBarItem.selectedImage = UIImage(named: "tabbar_icon_mine_selected")?.withRenderingMode(.alwaysOriginal)
         mineCtrl.tabBarItem.title = "我的"
         //设置子控制器
         self.viewControllers = [homeCtrl,mineCtrl]
-        
         //设置首页标题向上偏移
         homeCtrl.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
         mineCtrl.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)

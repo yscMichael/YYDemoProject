@@ -12,8 +12,6 @@
 		11A71A7226FAD0E9003D3743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A71A7026FAD0E9003D3743 /* Main.storyboard */; };
 		11A71A7426FAD0EA003D3743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A71A7326FAD0EA003D3743 /* Assets.xcassets */; };
 		11A71A7726FAD0EA003D3743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A71A7526FAD0EA003D3743 /* LaunchScreen.storyboard */; };
-		11A71A8226FAD0EA003D3743 /* testAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A8126FAD0EA003D3743 /* testAppTests.swift */; };
-		11A71A8D26FAD0EA003D3743 /* testAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A8C26FAD0EA003D3743 /* testAppUITests.swift */; };
 		11A71A9C26FAD10E003D3743 /* SPCMainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A9B26FAD10E003D3743 /* SPCMainTabViewController.swift */; };
 		11A71AA026FAD13D003D3743 /* SPCHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A9F26FAD13D003D3743 /* SPCHomeController.swift */; };
 		11A71AA226FAD14D003D3743 /* SPCMineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71AA126FAD14D003D3743 /* SPCMineController.swift */; };
@@ -45,11 +43,7 @@
 		11A71A7626FAD0EA003D3743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11A71A7826FAD0EA003D3743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11A71A7D26FAD0EA003D3743 /* YYTabBarProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YYTabBarProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		11A71A8126FAD0EA003D3743 /* testAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testAppTests.swift; sourceTree = "<group>"; };
-		11A71A8326FAD0EA003D3743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11A71A8826FAD0EA003D3743 /* YYTabBarProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YYTabBarProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		11A71A8C26FAD0EA003D3743 /* testAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testAppUITests.swift; sourceTree = "<group>"; };
-		11A71A8E26FAD0EA003D3743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11A71A9B26FAD10E003D3743 /* SPCMainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCMainTabViewController.swift; sourceTree = "<group>"; };
 		11A71A9F26FAD13D003D3743 /* SPCHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCHomeController.swift; sourceTree = "<group>"; };
 		11A71AA126FAD14D003D3743 /* SPCMineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCMineController.swift; sourceTree = "<group>"; };
@@ -84,8 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				11A71A6926FAD0E9003D3743 /* YYTabBarProject */,
-				11A71A8026FAD0EA003D3743 /* testAppTests */,
-				11A71A8B26FAD0EA003D3743 /* testAppUITests */,
 				11A71A6826FAD0E9003D3743 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,24 +102,6 @@
 				11A71AA326FC14F3003D3743 /* other */,
 			);
 			path = YYTabBarProject;
-			sourceTree = "<group>";
-		};
-		11A71A8026FAD0EA003D3743 /* testAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				11A71A8126FAD0EA003D3743 /* testAppTests.swift */,
-				11A71A8326FAD0EA003D3743 /* Info.plist */,
-			);
-			path = testAppTests;
-			sourceTree = "<group>";
-		};
-		11A71A8B26FAD0EA003D3743 /* testAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				11A71A8C26FAD0EA003D3743 /* testAppUITests.swift */,
-				11A71A8E26FAD0EA003D3743 /* Info.plist */,
-			);
-			path = testAppUITests;
 			sourceTree = "<group>";
 		};
 		11A71A9A26FAD0F4003D3743 /* MainTabbarController */ = {
@@ -308,7 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11A71A8226FAD0EA003D3743 /* testAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +289,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11A71A8D26FAD0EA003D3743 /* testAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
