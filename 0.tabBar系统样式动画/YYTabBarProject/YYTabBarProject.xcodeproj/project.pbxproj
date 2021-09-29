@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117BA77127045A4900A6BD4C /* SPCMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA77027045A4900A6BD4C /* SPCMessageController.swift */; };
+		117BA77327045A5800A6BD4C /* SPCCloudController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA77227045A5800A6BD4C /* SPCCloudController.swift */; };
+		117BA77527045A6C00A6BD4C /* SPCFindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA77427045A6C00A6BD4C /* SPCFindController.swift */; };
 		11A71A6B26FAD0E9003D3743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A6A26FAD0E9003D3743 /* AppDelegate.swift */; };
 		11A71A6F26FAD0E9003D3743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71A6E26FAD0E9003D3743 /* ViewController.swift */; };
 		11A71A7226FAD0E9003D3743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A71A7026FAD0E9003D3743 /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		117BA77027045A4900A6BD4C /* SPCMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCMessageController.swift; sourceTree = "<group>"; };
+		117BA77227045A5800A6BD4C /* SPCCloudController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCCloudController.swift; sourceTree = "<group>"; };
+		117BA77427045A6C00A6BD4C /* SPCFindController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPCFindController.swift; sourceTree = "<group>"; };
 		11A71A6726FAD0E9003D3743 /* YYTabBarProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYTabBarProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A71A6A26FAD0E9003D3743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A71A6E26FAD0E9003D3743 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +82,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		117BA76B2704597D00A6BD4C /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				11A71A9F26FAD13D003D3743 /* SPCHomeController.swift */,
+			);
+			path = "首页";
+			sourceTree = "<group>";
+		};
+		117BA76C270459A000A6BD4C /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				117BA77027045A4900A6BD4C /* SPCMessageController.swift */,
+			);
+			path = "消息";
+			sourceTree = "<group>";
+		};
+		117BA76D270459A500A6BD4C /* 发现 */ = {
+			isa = PBXGroup;
+			children = (
+				117BA77427045A6C00A6BD4C /* SPCFindController.swift */,
+			);
+			path = "发现";
+			sourceTree = "<group>";
+		};
+		117BA76E270459AD00A6BD4C /* 云服务 */ = {
+			isa = PBXGroup;
+			children = (
+				117BA77227045A5800A6BD4C /* SPCCloudController.swift */,
+			);
+			path = "云服务";
+			sourceTree = "<group>";
+		};
+		117BA76F270459B200A6BD4C /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				11A71AA126FAD14D003D3743 /* SPCMineController.swift */,
+			);
+			path = "我的";
+			sourceTree = "<group>";
+		};
 		11A71A5E26FAD0E9003D3743 = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +145,11 @@
 			children = (
 				11A71A6A26FAD0E9003D3743 /* AppDelegate.swift */,
 				11A71A9A26FAD0F4003D3743 /* MainTabbarController */,
-				11A71A9D26FAD111003D3743 /* Home */,
-				11A71A9E26FAD116003D3743 /* Mine */,
+				117BA76B2704597D00A6BD4C /* 首页 */,
+				117BA76C270459A000A6BD4C /* 消息 */,
+				117BA76D270459A500A6BD4C /* 发现 */,
+				117BA76E270459AD00A6BD4C /* 云服务 */,
+				117BA76F270459B200A6BD4C /* 我的 */,
 				11A71AA326FC14F3003D3743 /* other */,
 			);
 			path = YYTabBarProject;
@@ -112,22 +161,6 @@
 				11A71A9B26FAD10E003D3743 /* SPCMainTabViewController.swift */,
 			);
 			path = MainTabbarController;
-			sourceTree = "<group>";
-		};
-		11A71A9D26FAD111003D3743 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				11A71A9F26FAD13D003D3743 /* SPCHomeController.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		11A71A9E26FAD116003D3743 /* Mine */ = {
-			isa = PBXGroup;
-			children = (
-				11A71AA126FAD14D003D3743 /* SPCMineController.swift */,
-			);
-			path = Mine;
 			sourceTree = "<group>";
 		};
 		11A71AA326FC14F3003D3743 /* other */ = {
@@ -274,10 +307,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A71A6F26FAD0E9003D3743 /* ViewController.swift in Sources */,
+				117BA77127045A4900A6BD4C /* SPCMessageController.swift in Sources */,
 				11A71A6B26FAD0E9003D3743 /* AppDelegate.swift in Sources */,
 				11A71AC926FC2CBB003D3743 /* Global.swift in Sources */,
+				117BA77327045A5800A6BD4C /* SPCCloudController.swift in Sources */,
 				11A71A9C26FAD10E003D3743 /* SPCMainTabViewController.swift in Sources */,
 				11A71AA026FAD13D003D3743 /* SPCHomeController.swift in Sources */,
+				117BA77527045A6C00A6BD4C /* SPCFindController.swift in Sources */,
 				11A71AA226FAD14D003D3743 /* SPCMineController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
