@@ -9,6 +9,8 @@ import UIKit
 
 class YYCustomRealCellController: UIViewController {
     //MARK: - 属性 -
+    //MARK:oldIndexPath(这个主要用来辨别是否有cell被长按,同时需要更新位置)
+    var dragingIndexPath: IndexPath?
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -49,14 +51,16 @@ class YYCustomRealCellController: UIViewController {
         //获取cell
         let cell = longPress.view as! YYCollectionViewCell
         self.listCollectionView.bringSubviewToFront(cell)
-        //获取对应cell的位置
-        guard let indexPath = self.listCollectionView.indexPath(for: cell) else {
-            return
-        }
         
         //手势处理
         switch longPress.state {
         case .began://手势开始
+            //获取对应cell的位置
+            let indexPathT = self.listCollectionView.indexPath(for: cell)
+            if indexPathT == nil {
+                return
+            }
+            self.dragingIndexPath = indexPathT
             //获取当前所有Cell的位置信息
             self.cellAttributesArray.removeAll()
             for index in 0..<self.dataSource.count {
@@ -65,28 +69,40 @@ class YYCustomRealCellController: UIViewController {
             }
             break
         case .changed://手势移动
+            if self.dragingIndexPath == nil {
+                return
+            }
             //更新Cell位置
             cell.center = point
             //判断是否需要交换cell
             for attributes in self.cellAttributesArray {
-                if attributes.frame.contains(point) && (indexPath != attributes.indexPath) {
+                if attributes.frame.contains(point) &&
+                    (self.dragingIndexPath != attributes.indexPath) {
                     //修改数据源
-                    let orginalTitle = self.dataSource[indexPath.row]
-                    self.dataSource.remove(at: indexPath.row)
+                    let orginalTitle = self.dataSource[self.dragingIndexPath!.row]
+                    self.dataSource.remove(at: self.dragingIndexPath!.row)
                     self.dataSource.insert(orginalTitle, at: attributes.indexPath.row)
                     //交换位置
-                    self.listCollectionView.moveItem(at: indexPath, to: attributes.indexPath)
+                    self.listCollectionView.moveItem(at: self.dragingIndexPath!, to: attributes.indexPath)
+                    //拖动位置重新赋值
+                    self.dragingIndexPath = attributes.indexPath
                 }
             }
             break
         case .ended://手势结束
+            if self.dragingIndexPath == nil {
+                return
+            }
             //cell结束移动
-            guard let attributes = self.listCollectionView.layoutAttributesForItem(at: indexPath) else {
+            guard let attributes = self.listCollectionView.layoutAttributesForItem(at: self.dragingIndexPath!) else {
+                self.dragingIndexPath = nil
                 return
             }
             cell.center = attributes.center
+            self.dragingIndexPath = nil
             break
         default:
+            self.dragingIndexPath = nil
             break
         }
     }

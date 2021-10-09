@@ -11,6 +11,8 @@ import UIKit
 
 class YYSystemViewController: UIViewController {
     //MARK: - 属性 -
+    //MARK:oldIndexPath(这个主要用来辨别是否有cell被长按,不需要更新位置)
+    var dragingIndexPath: IndexPath?
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -50,28 +52,40 @@ class YYSystemViewController: UIViewController {
     @objc func longPressEvent(longPress: UILongPressGestureRecognizer) -> () {
         //获取长按点位置
         let point = longPress.location(in: self.listCollectionView)
-        let indexPath = self.listCollectionView.indexPathForItem(at: point)
-        if indexPath == nil {
-            return
-        }
         
         //手势处理
         switch longPress.state {
         case .began://手势开始
+            let indexPath = self.listCollectionView.indexPathForItem(at: point)
+            if indexPath == nil {
+                return
+            }
+            self.dragingIndexPath = indexPath
             //iOS9以上移动cell方法
             self.listCollectionView.beginInteractiveMovementForItem(at: indexPath!)
             break
         case .changed://手势移动
+            if self.dragingIndexPath == nil {
+                return
+            }
             //更新Cell位置
             self.listCollectionView.updateInteractiveMovementTargetPosition(point)
             break
         case .ended://手势结束
+            if self.dragingIndexPath == nil {
+                return
+            }
             //cell结束移动
             self.listCollectionView.endInteractiveMovement()
+            self.dragingIndexPath = nil
             break
         default:
+            if self.dragingIndexPath == nil {
+                return
+            }
             //cell取消移动
             self.listCollectionView.cancelInteractiveMovement()
+            self.dragingIndexPath = nil
             break
         }
     }
@@ -94,7 +108,7 @@ class YYSystemViewController: UIViewController {
     lazy var dataSource: Array<String> = {
         var dataSource = Array<String>()
         //添加数据源
-        for index in 0...15{
+        for index in 0...15*5{
             dataSource.append("\(index)-title")
         }
         return dataSource
