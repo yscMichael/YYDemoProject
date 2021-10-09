@@ -38,31 +38,25 @@ class YYCustomRealCellController: UIViewController {
     
     //初始化数据
     func initData() -> () {
-        //1、在collectionview添加长按手势
-        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressEvent))
-        self.listCollectionView.addGestureRecognizer(longPress)
+        
     }
     
     //MARK: - Event Response -
     //MARK:处理长按手势
     @objc func longPressEvent(longPress: UILongPressGestureRecognizer) -> () {
-        print("0000")
-        //获取长按点位置
+        //将点映射到listCollectionView
         let point = longPress.location(in: self.listCollectionView)
-        print(point.x)
-        print(point.y)
+        //获取cell
+        let cell = longPress.view as! YYCollectionViewCell
+        self.listCollectionView.bringSubviewToFront(cell)
         //获取对应cell的位置
-        let indexPath = self.listCollectionView.indexPathForItem(at: point)
-        if indexPath == nil {
+        guard let indexPath = self.listCollectionView.indexPath(for: cell) else {
             return
         }
-        //获取对应的cell
-        let cell = self.listCollectionView.cellForItem(at: indexPath!) as! YYCollectionViewCell
-        self.listCollectionView.bringSubviewToFront(cell)
+        
         //手势处理
         switch longPress.state {
         case .began://手势开始
-            //print("1111")
             //获取当前所有Cell的位置信息
             self.cellAttributesArray.removeAll()
             for index in 0..<self.dataSource.count {
@@ -71,38 +65,28 @@ class YYCustomRealCellController: UIViewController {
             }
             break
         case .changed://手势移动
-            //print("2222")
             //更新Cell位置
             cell.center = point
             //判断是否需要交换cell
             for attributes in self.cellAttributesArray {
-//                print("交换位置=========1")
-//                print(indexPath?.row)
-//                print(attributes.indexPath.row)
-//                print(attributes.frame)
-//                print(point)
                 if attributes.frame.contains(point) && (indexPath != attributes.indexPath) {
                     //修改数据源
-                    let orginalTitle = self.dataSource[indexPath!.row]
-                    self.dataSource.remove(at: indexPath!.row)
+                    let orginalTitle = self.dataSource[indexPath.row]
+                    self.dataSource.remove(at: indexPath.row)
                     self.dataSource.insert(orginalTitle, at: attributes.indexPath.row)
                     //交换位置
-//                    print("交换位置=========2")
-//                    print(indexPath?.row)
-//                    print(attributes.indexPath.row)
-                    self.listCollectionView.moveItem(at: indexPath!, to: attributes.indexPath)
+                    self.listCollectionView.moveItem(at: indexPath, to: attributes.indexPath)
                 }
             }
             break
         case .ended://手势结束
-//            print("3333")
             //cell结束移动
-            cell.center = self.listCollectionView.layoutAttributesForItem(at: indexPath!)!.center
+            guard let attributes = self.listCollectionView.layoutAttributesForItem(at: indexPath) else {
+                return
+            }
+            cell.center = attributes.center
             break
         default:
-//            print("4444")
-            //cell取消移动
-            
             break
         }
     }
@@ -191,8 +175,12 @@ extension YYCustomRealCellController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = listCollectionView.dequeueReusableCell(withReuseIdentifier: "YYCollectionViewCell", for: indexPath) as! YYCollectionViewCell
+        //赋值
         let title = self.dataSource[indexPath.row]
         cell.label.text = title
+        //添加手势(不能添加到collectionView)
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressEvent))
+        cell.addGestureRecognizer(longPress)
         return cell
     }
 }

@@ -9,6 +9,10 @@ import UIKit
 
 class YYCustomImageController: UIViewController {
     //MARK: - 属性 -
+    //MARK:oldIndexPath
+    var dragingIndexPath: IndexPath?
+    //MARK:moveIndexPath
+    var targetIndexPath: IndexPath?
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -22,6 +26,7 @@ class YYCustomImageController: UIViewController {
     func initViews() -> () {
         self.view.addSubview(self.listCollectionView)
         self.view.addSubview(self.backButton)
+        self.listCollectionView.addSubview(self.snapShotView)
         self.listCollectionView.reloadData()
     }
     
@@ -34,14 +39,93 @@ class YYCustomImageController: UIViewController {
             make.bottom.left.right.equalTo(self.view)
             make.height.equalTo(50)
         }
+        self.snapShotView.snp.makeConstraints { make in
+            make.left.top.equalTo(self.listCollectionView)
+            make.width.height.equalTo(50)
+        }
     }
     
     //初始化数据
     func initData() -> () {
-        
+        //1、listCollectionView添加手势
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressEvent))
+        longPress.minimumPressDuration = 0.3
+        self.listCollectionView.addGestureRecognizer(longPress)
     }
     
     //MARK: - Event Response -
+    //MARK:处理长按手势
+    @objc func longPressEvent(longPress: UILongPressGestureRecognizer) -> () {
+        //获取对应的Point
+        let point = longPress.location(in: self.listCollectionView)
+        
+        //手势处理
+        switch longPress.state {
+        case .began://手势开始
+            //获取indexPath
+            guard let indexPath = self.listCollectionView.indexPathForItem(at: point) else {
+                return
+            }
+            self.dragingIndexPath = indexPath
+            //获取当前所有Cell的位置信息
+            self.cellAttributesArray.removeAll()
+            for index in 0..<self.dataSource.count {
+                let attributes = self.listCollectionView.layoutAttributesForItem(at: IndexPath(row: index, section: 0))
+                self.cellAttributesArray.append(attributes!)
+            }
+            //获取cell
+            let cell = self.listCollectionView.cellForItem(at: indexPath) as! YYCollectionViewCell
+            //获取截图
+            guard let tempView = cell.snapshotView(afterScreenUpdates: false) else {
+                return
+            }
+            self.snapShotView.frame = cell.frame
+            self.snapShotView.addSubview(tempView)
+            self.snapShotView.isHidden = false
+            self.listCollectionView.bringSubviewToFront(self.snapShotView)
+            self.snapShotView.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+            break
+        case .changed://手势移动
+            self.snapShotView.center = point
+            //判断snapShotView与哪个cell交合了
+            for attributes in self.cellAttributesArray {
+                if attributes.frame.contains(point) &&
+                    (self.dragingIndexPath != attributes.indexPath) &&
+                    (self.dragingIndexPath != nil){
+                    print("cell的位置===========P===1")
+                    print(self.dragingIndexPath?.row)
+                    print(attributes.indexPath.row)
+                    //修改数据源
+                    let orginalTitle = self.dataSource[self.dragingIndexPath!.row]
+                    self.dataSource.remove(at: self.dragingIndexPath!.row)
+                    self.dataSource.insert(orginalTitle, at: attributes.indexPath.row)
+                    //交换位置
+                    self.listCollectionView.moveItem(at: self.dragingIndexPath!, to: attributes.indexPath)
+                    //赋值
+                    self.dragingIndexPath = attributes.indexPath
+                    print("cell的位置===========P===2")
+                    print(self.dragingIndexPath?.row)
+                    print(attributes.indexPath.row)
+                }
+            }
+            break
+        case .ended://手势结束
+            //获取当前dragingIndexPath对应cell的位置
+            if self.dragingIndexPath != nil {
+                guard let attributes = self.listCollectionView.layoutAttributesForItem(at: self.dragingIndexPath!) else {
+                    return
+                }
+                self.snapShotView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                self.snapShotView.frame = attributes.frame
+                self.snapShotView.isHidden = true
+            }
+            break
+        default:
+            print("4444")
+            break
+        }
+    }
+    
     //MARK:点击返回方法
     @objc func clickBackButton() -> () {
         //测试moveItemAtIndexPath:toIndexPath:方法
@@ -101,6 +185,19 @@ class YYCustomImageController: UIViewController {
         button.backgroundColor = UIColor.blue
         button.addTarget(self, action: #selector(clickBackButton), for: .touchUpInside)
         return button
+    }()
+    
+    //MARK:截图View
+    var snapShotView: UIView = {
+        let tempView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        tempView.isHidden = true
+        return tempView
+    }()
+    
+    //MARK:所有cell位置信息
+    lazy var cellAttributesArray: Array<UICollectionViewLayoutAttributes> = {
+        let cellAttributesArray = Array<UICollectionViewLayoutAttributes>()
+        return cellAttributesArray
     }()
 }
 

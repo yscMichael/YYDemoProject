@@ -51,14 +51,15 @@ class YYSystemViewController: UIViewController {
         //获取长按点位置
         let point = longPress.location(in: self.listCollectionView)
         let indexPath = self.listCollectionView.indexPathForItem(at: point)
+        if indexPath == nil {
+            return
+        }
+        
         //手势处理
         switch longPress.state {
         case .began://手势开始
-            //判断indexPath是否存在
-            if indexPath != nil {
-                //iOS9以上移动cell方法
-                self.listCollectionView.beginInteractiveMovementForItem(at: indexPath!)
-            }
+            //iOS9以上移动cell方法
+            self.listCollectionView.beginInteractiveMovementForItem(at: indexPath!)
             break
         case .changed://手势移动
             //更新Cell位置
