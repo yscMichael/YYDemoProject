@@ -39,10 +39,11 @@ class YYCustomImageController: UIViewController {
             make.bottom.left.right.equalTo(self.view)
             make.height.equalTo(50)
         }
-        self.snapShotView.snp.makeConstraints { make in
-            make.left.top.equalTo(self.listCollectionView)
-            make.width.height.equalTo(50)
-        }
+        //不能用这个布局,否则后面直接设置frame会失效
+        //self.snapShotView.snp.makeConstraints { make in
+        //    make.left.top.equalTo(self.listCollectionView)
+        //    make.width.height.equalTo(50)
+        //}
     }
     
     //初始化数据
@@ -79,6 +80,9 @@ class YYCustomImageController: UIViewController {
             guard let tempView = cell.snapshotView(afterScreenUpdates: false) else {
                 return
             }
+            tempView.layer.borderColor = UIColor.black.cgColor
+            tempView.layer.borderWidth = 1.0
+            
             self.snapShotView.frame = cell.frame
             self.snapShotView.addSubview(tempView)
             self.snapShotView.isHidden = false
@@ -92,9 +96,6 @@ class YYCustomImageController: UIViewController {
                 if attributes.frame.contains(point) &&
                     (self.dragingIndexPath != attributes.indexPath) &&
                     (self.dragingIndexPath != nil){
-                    print("cell的位置===========P===1")
-                    print(self.dragingIndexPath?.row)
-                    print(attributes.indexPath.row)
                     //修改数据源
                     let orginalTitle = self.dataSource[self.dragingIndexPath!.row]
                     self.dataSource.remove(at: self.dragingIndexPath!.row)
@@ -103,9 +104,6 @@ class YYCustomImageController: UIViewController {
                     self.listCollectionView.moveItem(at: self.dragingIndexPath!, to: attributes.indexPath)
                     //赋值
                     self.dragingIndexPath = attributes.indexPath
-                    print("cell的位置===========P===2")
-                    print(self.dragingIndexPath?.row)
-                    print(attributes.indexPath.row)
                 }
             }
             break
@@ -118,6 +116,9 @@ class YYCustomImageController: UIViewController {
                 self.snapShotView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 self.snapShotView.frame = attributes.frame
                 self.snapShotView.isHidden = true
+                for subView in self.snapShotView.subviews{
+                    subView.removeFromSuperview()
+                }
             }
             break
         default:
@@ -190,6 +191,8 @@ class YYCustomImageController: UIViewController {
     //MARK:截图View
     var snapShotView: UIView = {
         let tempView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        tempView.layer.borderWidth = 1.0
+        tempView.layer.borderColor = UIColor.green.cgColor
         tempView.isHidden = true
         return tempView
     }()
