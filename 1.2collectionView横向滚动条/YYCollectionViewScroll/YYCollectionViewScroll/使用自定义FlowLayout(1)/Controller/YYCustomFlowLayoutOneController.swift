@@ -1,5 +1,5 @@
 //
-//  YYCustomFlowLayoutController.swift
+//  YYCustomFlowLayoutONeController.swift
 //  YYCollectionViewScroll
 //
 //  Created by 杨世川 on 2021/10/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class YYCustomFlowLayoutController: UIViewController {
+class YYCustomFlowLayoutOneController: UIViewController {
     //MARK: - 属性 -
     
     //MARK: - Life Cycle -
@@ -38,6 +38,10 @@ class YYCustomFlowLayoutController: UIViewController {
     
     //初始化数据
     func initData() -> () {
+        let visiableRect = CGRect(x: 0, y: 0, width: 414, height: 200)
+        let attrsFrame1 = CGRect(x: 0, y: 0, width: 0, height: 0)
+        
+        
         
     }
     
@@ -55,24 +59,28 @@ class YYCustomFlowLayoutController: UIViewController {
         var dataSource = Array<String>()
         //添加数据源
         for index in 0...15*5{
-            if index % 2 == 0 {
-                dataSource.append("\(index)-title22")
-            }else if index % 3 == 0 {
-                dataSource.append("\(index)-title333")
-            }else{
-                dataSource.append("\(index)-title")
-            }
+            dataSource.append("\(index)")
         }
+//        for index in 0...15*5{
+//            if index % 2 == 0 {
+//                dataSource.append("\(index)-title22")
+//            }else if index % 3 == 0 {
+//                dataSource.append("\(index)-title333")
+//            }else{
+//                dataSource.append("\(index)-title")
+//            }
+//        }
         return dataSource
     }()
     
     //MARK:flowLayout
-    lazy var flowLayout: UICollectionViewFlowLayout = {
-        let flowLayout = UICollectionViewFlowLayout.init()
+    lazy var flowLayout: YYLineFlowOneLayout = {
+        let flowLayout = YYLineFlowOneLayout.init()
         flowLayout.itemSize = CGSize(width: CGFloat(YYCellWidth), height: CGFloat(YYCellHeight))
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 10
-        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.delegate = self
         return flowLayout
     }()
     
@@ -93,22 +101,20 @@ class YYCustomFlowLayoutController: UIViewController {
 
 //MARK: - SystemDelegate -
 //MARK:
-extension YYCustomFlowLayoutController: UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //计算文本大小
-        let titleString = self.dataSource[indexPath.row]
-        let size = titleString.getStringSizeFromBoundingRect(font: UIFont.systemFont(ofSize: 16.0))
-        return CGSize(width: size.width + 10, height: CGFloat(YYCellHeight))
+extension YYCustomFlowLayoutOneController: SPCCustomFlowLayoutDelegate{
+    func getItemSize(indexPath: IndexPath) -> (CGSize) {
+        let title = self.dataSource[indexPath.row]
+        return title.getStringSizeFromBoundingRect(font: UIFont.systemFont(ofSize: 16.0))
     }
 }
 
 //MARK:UICollectionViewDelegate
-extension YYCustomFlowLayoutController: UICollectionViewDelegate{
+extension YYCustomFlowLayoutOneController: UICollectionViewDelegate{
     
 }
 
 //MARK:UICollectionViewDataSource
-extension YYCustomFlowLayoutController: UICollectionViewDataSource{
+extension YYCustomFlowLayoutOneController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataSource.count
     }

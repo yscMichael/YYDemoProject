@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		115A81B32716F6ED00D560E3 /* YYLabelSizeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81B22716F6ED00D560E3 /* YYLabelSizeController.swift */; };
 		115A81B52716F70800D560E3 /* YYSystemFlowLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81B42716F70800D560E3 /* YYSystemFlowLayoutController.swift */; };
-		115A81B72716F72100D560E3 /* YYCustomFlowLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81B62716F72100D560E3 /* YYCustomFlowLayoutController.swift */; };
-		115A81BA2717061F00D560E3 /* YYLineFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81B92717061F00D560E3 /* YYLineFlowLayout.swift */; };
+		115A81B72716F72100D560E3 /* YYCustomFlowLayoutOneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81B62716F72100D560E3 /* YYCustomFlowLayoutOneController.swift */; };
+		115A81BA2717061F00D560E3 /* YYLineFlowOneLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81B92717061F00D560E3 /* YYLineFlowOneLayout.swift */; };
+		115A81BF2718194300D560E3 /* YYCustomFlowLayoutTwoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81BE2718194300D560E3 /* YYCustomFlowLayoutTwoController.swift */; };
+		115A81C12718195800D560E3 /* YYLineFlowTwoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A81C02718195800D560E3 /* YYLineFlowTwoLayout.swift */; };
 		11A71B0126FD62E0003D3743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71B0026FD62E0003D3743 /* AppDelegate.swift */; };
 		11A71B0526FD62E0003D3743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71B0426FD62E0003D3743 /* ViewController.swift */; };
 		11A71B0826FD62E0003D3743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A71B0626FD62E0003D3743 /* Main.storyboard */; };
@@ -61,8 +63,10 @@
 /* Begin PBXFileReference section */
 		115A81B22716F6ED00D560E3 /* YYLabelSizeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLabelSizeController.swift; sourceTree = "<group>"; };
 		115A81B42716F70800D560E3 /* YYSystemFlowLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYSystemFlowLayoutController.swift; sourceTree = "<group>"; };
-		115A81B62716F72100D560E3 /* YYCustomFlowLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCustomFlowLayoutController.swift; sourceTree = "<group>"; };
-		115A81B92717061F00D560E3 /* YYLineFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLineFlowLayout.swift; sourceTree = "<group>"; };
+		115A81B62716F72100D560E3 /* YYCustomFlowLayoutOneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCustomFlowLayoutOneController.swift; sourceTree = "<group>"; };
+		115A81B92717061F00D560E3 /* YYLineFlowOneLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLineFlowOneLayout.swift; sourceTree = "<group>"; };
+		115A81BE2718194300D560E3 /* YYCustomFlowLayoutTwoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCustomFlowLayoutTwoController.swift; sourceTree = "<group>"; };
+		115A81C02718195800D560E3 /* YYLineFlowTwoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLineFlowTwoLayout.swift; sourceTree = "<group>"; };
 		11A71AFD26FD62E0003D3743 /* YYCollectionViewScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYCollectionViewScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A71B0026FD62E0003D3743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A71B0426FD62E0003D3743 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,13 +144,13 @@
 			path = "使用系统FlowLayout";
 			sourceTree = "<group>";
 		};
-		115A81AB2716F68300D560E3 /* 使用自定义FlowLayout */ = {
+		115A81AB2716F68300D560E3 /* 使用自定义FlowLayout(1) */ = {
 			isa = PBXGroup;
 			children = (
 				115A81AD2716F6B000D560E3 /* Controller */,
-				115A81B82717055800D560E3 /* YYLineFlowLayout */,
+				115A81B82717055800D560E3 /* YYLineFlowLayout(1) */,
 			);
-			path = "使用自定义FlowLayout";
+			path = "使用自定义FlowLayout(1)";
 			sourceTree = "<group>";
 		};
 		115A81AC2716F6A200D560E3 /* Controller */ = {
@@ -160,7 +164,7 @@
 		115A81AD2716F6B000D560E3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				115A81B62716F72100D560E3 /* YYCustomFlowLayoutController.swift */,
+				115A81B62716F72100D560E3 /* YYCustomFlowLayoutOneController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -182,12 +186,37 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		115A81B82717055800D560E3 /* YYLineFlowLayout */ = {
+		115A81B82717055800D560E3 /* YYLineFlowLayout(1) */ = {
 			isa = PBXGroup;
 			children = (
-				115A81B92717061F00D560E3 /* YYLineFlowLayout.swift */,
+				115A81B92717061F00D560E3 /* YYLineFlowOneLayout.swift */,
 			);
-			path = YYLineFlowLayout;
+			path = "YYLineFlowLayout(1)";
+			sourceTree = "<group>";
+		};
+		115A81BB271818C000D560E3 /* 使用自定义FlowLayout(2) */ = {
+			isa = PBXGroup;
+			children = (
+				115A81BC2718190C00D560E3 /* Controller */,
+				115A81BD2718191F00D560E3 /* YYLineFlowLayout(2) */,
+			);
+			path = "使用自定义FlowLayout(2)";
+			sourceTree = "<group>";
+		};
+		115A81BC2718190C00D560E3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				115A81BE2718194300D560E3 /* YYCustomFlowLayoutTwoController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		115A81BD2718191F00D560E3 /* YYLineFlowLayout(2) */ = {
+			isa = PBXGroup;
+			children = (
+				115A81C02718195800D560E3 /* YYLineFlowTwoLayout.swift */,
+			);
+			path = "YYLineFlowLayout(2)";
 			sourceTree = "<group>";
 		};
 		11A71AF426FD62E0003D3743 = {
@@ -214,7 +243,8 @@
 				11A71B1426FD6309003D3743 /* MainController */,
 				115A81A92716F64F00D560E3 /* 测试文本大小 */,
 				115A81AA2716F65A00D560E3 /* 使用系统FlowLayout */,
-				115A81AB2716F68300D560E3 /* 使用自定义FlowLayout */,
+				115A81AB2716F68300D560E3 /* 使用自定义FlowLayout(1) */,
+				115A81BB271818C000D560E3 /* 使用自定义FlowLayout(2) */,
 				11A71B1726FD6378003D3743 /* other */,
 			);
 			path = YYCollectionViewScroll;
@@ -366,6 +396,7 @@
 				11CA1DB12716D7AF00B552D9 /* ConstraintRelation.swift in Sources */,
 				11CA1DAF2716D7AF00B552D9 /* ConstraintMakerEditable.swift in Sources */,
 				11CA1DBC2716D7AF00B552D9 /* ConstraintMakerRelatable.swift in Sources */,
+				115A81BF2718194300D560E3 /* YYCustomFlowLayoutTwoController.swift in Sources */,
 				11CA1DA02716D7AF00B552D9 /* ConstraintInsets.swift in Sources */,
 				11CA1DB72716D7AF00B552D9 /* ConstraintRelatableTarget.swift in Sources */,
 				11CA1DB42716D7AF00B552D9 /* ConstraintItem.swift in Sources */,
@@ -374,6 +405,7 @@
 				11CA1D9D2716D7AF00B552D9 /* ConstraintAttributes.swift in Sources */,
 				11CA1DB22716D7AF00B552D9 /* ConstraintLayoutGuideDSL.swift in Sources */,
 				11CA1D9E2716D7AF00B552D9 /* ConstraintViewDSL.swift in Sources */,
+				115A81C12718195800D560E3 /* YYLineFlowTwoLayout.swift in Sources */,
 				11CA1DAE2716D7AF00B552D9 /* ConstraintOffsetTarget.swift in Sources */,
 				11CA1D9C2716D7AF00B552D9 /* ConstraintMakerPriortizable.swift in Sources */,
 				11A71B0526FD62E0003D3743 /* ViewController.swift in Sources */,
@@ -390,9 +422,9 @@
 				11A71B1626FD6348003D3743 /* YYMainViewController.swift in Sources */,
 				115A81B32716F6ED00D560E3 /* YYLabelSizeController.swift in Sources */,
 				11CA1DA82716D7AF00B552D9 /* UILayoutSupport+Extensions.swift in Sources */,
-				115A81BA2717061F00D560E3 /* YYLineFlowLayout.swift in Sources */,
+				115A81BA2717061F00D560E3 /* YYLineFlowOneLayout.swift in Sources */,
 				11CA1DA42716D7AF00B552D9 /* ConstraintPriority.swift in Sources */,
-				115A81B72716F72100D560E3 /* YYCustomFlowLayoutController.swift in Sources */,
+				115A81B72716F72100D560E3 /* YYCustomFlowLayoutOneController.swift in Sources */,
 				115A81B52716F70800D560E3 /* YYSystemFlowLayoutController.swift in Sources */,
 				11CA1D992716D7AF00B552D9 /* ConstraintMultiplierTarget.swift in Sources */,
 				11CA1DBA2716D7AF00B552D9 /* ConstraintDirectionalInsets.swift in Sources */,

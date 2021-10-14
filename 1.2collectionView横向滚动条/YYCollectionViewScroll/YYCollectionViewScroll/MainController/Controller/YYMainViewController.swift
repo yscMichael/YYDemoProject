@@ -28,27 +28,30 @@ class YYMainViewController: UIViewController {
     func initViews() -> () {
         self.view.addSubview(self.testTitleButton)
         self.view.addSubview(self.systemFlowButton)
-        self.view.addSubview(self.customFlowButton)
+        self.view.addSubview(self.customFlowButtonOne)
+        self.view.addSubview(self.customFlowButtonTwo)
     }
     
     //布局子View
     func layoutViews() -> () {
         self.testTitleButton.snp.makeConstraints { make in
-            make.centerY.equalTo(self.view)
-            make.centerX.equalTo(self.view).offset(-110)
-            make.width.equalTo(100)
+            make.top.equalTo(self.view).offset(200)
+            make.right.left.equalToSuperview()
             make.height.equalTo(50)
         }
         self.systemFlowButton.snp.makeConstraints { make in
-            make.centerY.equalTo(self.view)
-            make.centerX.equalTo(self.view).offset(0)
-            make.width.equalTo(100)
+            make.top.equalTo(self.testTitleButton.snp.bottom).offset(20)
+            make.right.left.equalToSuperview()
             make.height.equalTo(50)
         }
-        self.customFlowButton.snp.makeConstraints { make in
-            make.centerY.equalTo(self.view)
-            make.centerX.equalTo(self.view).offset(110)
-            make.width.equalTo(100)
+        self.customFlowButtonOne.snp.makeConstraints { make in
+            make.top.equalTo(self.systemFlowButton.snp.bottom).offset(20)
+            make.right.left.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        self.customFlowButtonTwo.snp.makeConstraints { make in
+            make.top.equalTo(self.customFlowButtonOne.snp.bottom).offset(20)
+            make.right.left.equalToSuperview()
             make.height.equalTo(50)
         }
     }
@@ -76,7 +79,7 @@ class YYMainViewController: UIViewController {
     //MARK:点击自定义FlowLayout
     @objc func clickCustomMethod() -> () {
         print("clickCustomMethod==========P")
-        let customFlowLayoutCtrl = YYCustomFlowLayoutController()
+        let customFlowLayoutCtrl = YYCustomFlowLayoutOneController()
         self.navigationController?.pushViewController(customFlowLayoutCtrl, animated: true)
     }
     
@@ -106,9 +109,18 @@ class YYMainViewController: UIViewController {
     }()
     
     //MARK:自定义FlowLayout方法
-    lazy var customFlowButton: UIButton = {
+    lazy var customFlowButtonOne: UIButton = {
         let button = UIButton()
-        button.setTitle("自定义Flow", for: .normal)
+        button.setTitle("自定义Flow1", for: .normal)
+        button.backgroundColor = UIColor.blue
+        button.addTarget(self, action: #selector(clickCustomMethod), for: .touchUpInside)
+        return button
+    }()
+    
+    //MARK:自定义FlowLayout方法
+    lazy var customFlowButtonTwo: UIButton = {
+        let button = UIButton()
+        button.setTitle("自定义Flow2", for: .normal)
         button.backgroundColor = UIColor.blue
         button.addTarget(self, action: #selector(clickCustomMethod), for: .touchUpInside)
         return button
