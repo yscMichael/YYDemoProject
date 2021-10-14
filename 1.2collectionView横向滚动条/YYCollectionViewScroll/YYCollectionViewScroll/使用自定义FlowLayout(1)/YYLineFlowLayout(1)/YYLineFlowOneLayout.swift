@@ -34,7 +34,7 @@ extension YYLineFlowOneLayout{
         super.prepare()
 //        print("prepare===========P")
         self.allAttributesArray.removeAll()
-        //获取所有属性
+        //获取所有属性(因为系统获取的永远是没有改变的)
     }
     
     override var collectionViewContentSize: CGSize{
@@ -73,6 +73,8 @@ extension YYLineFlowOneLayout{
             for index in 0..<tempArray.count {
                 let attrs = tempArray[index]
                 //判断是否是交叉区域(用contains的话,边界会有问题)
+                //这里会发生调变是因为系统的attrs.frame没有发生改变
+                //但是实际效果发生改变了frame改变了(所以这里判断失误了,发生了调变)
                 if !visiableRect.intersects(attrs.frame) {
 //                    print("不在区域内==================\(attrs.indexPath.row)")
                     print("index=\(index)不在区域内")
