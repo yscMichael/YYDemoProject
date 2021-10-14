@@ -38,10 +38,6 @@ class YYCustomFlowLayoutOneController: UIViewController {
     
     //初始化数据
     func initData() -> () {
-        let visiableRect = CGRect(x: 0, y: 0, width: 414, height: 200)
-        let attrsFrame1 = CGRect(x: 0, y: 0, width: 0, height: 0)
-        
-        
         
     }
     
@@ -100,7 +96,7 @@ class YYCustomFlowLayoutOneController: UIViewController {
 //MARK: - CustomDelegate -
 
 //MARK: - SystemDelegate -
-//MARK:
+//MARK:SPCCustomFlowLayoutDelegate
 extension YYCustomFlowLayoutOneController: SPCCustomFlowLayoutDelegate{
     func getItemSize(indexPath: IndexPath) -> (CGSize) {
         let title = self.dataSource[indexPath.row]

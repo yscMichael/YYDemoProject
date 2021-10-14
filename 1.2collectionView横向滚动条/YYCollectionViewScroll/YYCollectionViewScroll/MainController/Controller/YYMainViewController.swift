@@ -76,10 +76,17 @@ class YYMainViewController: UIViewController {
         self.navigationController?.pushViewController(systemFlowLayoutCtrl, animated: true)
     }
     
-    //MARK:点击自定义FlowLayout
-    @objc func clickCustomMethod() -> () {
-        print("clickCustomMethod==========P")
+    //MARK:点击自定义FlowLayout-1
+    @objc func clickCustomMethodOne() -> () {
+        print("clickCustomMethodOne==========P")
         let customFlowLayoutCtrl = YYCustomFlowLayoutOneController()
+        self.navigationController?.pushViewController(customFlowLayoutCtrl, animated: true)
+    }
+    
+    //MARK:点击自定义FlowLayout-2
+    @objc func clickCustomMethodTwo() -> () {
+        print("clickCustomMethodTwo==========P")
+        let customFlowLayoutCtrl = YYCustomFlowLayoutTwoController()
         self.navigationController?.pushViewController(customFlowLayoutCtrl, animated: true)
     }
     
@@ -108,21 +115,21 @@ class YYMainViewController: UIViewController {
         return button
     }()
     
-    //MARK:自定义FlowLayout方法
+    //MARK:自定义FlowLayout方法-1
     lazy var customFlowButtonOne: UIButton = {
         let button = UIButton()
         button.setTitle("自定义Flow1", for: .normal)
         button.backgroundColor = UIColor.blue
-        button.addTarget(self, action: #selector(clickCustomMethod), for: .touchUpInside)
+        button.addTarget(self, action: #selector(clickCustomMethodOne), for: .touchUpInside)
         return button
     }()
     
-    //MARK:自定义FlowLayout方法
+    //MARK:自定义FlowLayout方法-2
     lazy var customFlowButtonTwo: UIButton = {
         let button = UIButton()
         button.setTitle("自定义Flow2", for: .normal)
         button.backgroundColor = UIColor.blue
-        button.addTarget(self, action: #selector(clickCustomMethod), for: .touchUpInside)
+        button.addTarget(self, action: #selector(clickCustomMethodTwo), for: .touchUpInside)
         return button
     }()
 }
