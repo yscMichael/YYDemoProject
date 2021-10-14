@@ -54,18 +54,18 @@ class YYCustomFlowLayoutOneController: UIViewController {
     lazy var dataSource: Array<String> = {
         var dataSource = Array<String>()
         //添加数据源
-        for index in 0...15*5{
-            dataSource.append("\(index)")
-        }
 //        for index in 0...15*5{
-//            if index % 2 == 0 {
-//                dataSource.append("\(index)-title22")
-//            }else if index % 3 == 0 {
-//                dataSource.append("\(index)-title333")
-//            }else{
-//                dataSource.append("\(index)-title")
-//            }
+//            dataSource.append("\(index)")
 //        }
+        for index in 0...15*5{
+            if index % 2 == 0 {
+                dataSource.append("\(index)-titletitle-\(index)")
+            }else if index % 3 == 0 {
+                dataSource.append("\(index)-titletitletitle-\(index)")
+            }else{
+                dataSource.append("\(index)-title-\(index)")
+            }
+        }
         return dataSource
     }()
     
@@ -74,7 +74,7 @@ class YYCustomFlowLayoutOneController: UIViewController {
         let flowLayout = YYLineFlowOneLayout.init()
         flowLayout.itemSize = CGSize(width: CGFloat(YYCellWidth), height: CGFloat(YYCellHeight))
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.delegate = self
         return flowLayout

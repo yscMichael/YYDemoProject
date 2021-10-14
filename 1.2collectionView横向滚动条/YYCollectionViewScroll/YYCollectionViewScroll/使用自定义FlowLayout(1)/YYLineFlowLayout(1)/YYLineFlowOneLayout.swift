@@ -15,6 +15,9 @@ protocol SPCCustomFlowLayoutDelegate: NSObjectProtocol {
 }
 
 class YYLineFlowOneLayout: UICollectionViewFlowLayout {
+    //数组
+    var allAttributesArray: Array<UICollectionViewLayoutAttributes> = Array<UICollectionViewLayoutAttributes>()
+    
     //代理
     weak var delegate: SPCCustomFlowLayoutDelegate?
 }
@@ -29,12 +32,20 @@ extension YYLineFlowOneLayout{
     //MARK: 一些初始化工作最好在这里实现(此时collectionView的frame已完成)
     override func prepare() {
         super.prepare()
-        print("prepare===========P")
+//        print("prepare===========P")
+        self.allAttributesArray.removeAll()
+        //获取所有属性
+    }
+    
+    override var collectionViewContentSize: CGSize{
+        //这里要计算
+        return CGSize(width: 100000, height: YYCellHeight)
     }
     
     //MARK:设置cell的位置等相关(根据indexPath.row计算)
+    //MARK:这里系统的属性是没有发生变化的(系统也要求深拷贝)
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        print("layoutAttributesForElements===========P")
+//        print("layoutAttributesForElements===========P")
         //最终返回的数组
         var resultArray = Array<UICollectionViewLayoutAttributes>()
         //1、获取当前屏幕可见区域
@@ -44,30 +55,70 @@ extension YYLineFlowOneLayout{
         let height = self.collectionView?.frame.size.height ?? 0
         let visiableRect = CGRect(x: x, y: y, width: width, height: CGFloat(height))
         //2、获取《交叉》区域cell的UICollectionViewLayoutAttributes
+        var tempArray = Array<UICollectionViewLayoutAttributes>()
         let attriArray = super.layoutAttributesForElements(in: rect)
-        if attriArray != nil {
-            for index in 0..<attriArray!.count {
-                let attrs = attriArray![index]
+//        for index in attriArray! {
+//            print("观察是否改变了Frame---\(index.indexPath.row)")
+//            print(index.frame)
+//        }
+        
+        for attrs in attriArray! {
+            let tempAttrs = attrs.copy()
+            tempArray.append(tempAttrs as! UICollectionViewLayoutAttributes)
+            
+        }
+        //遍历添加属性
+//        if tempArray != nil {
+        print("开始遍历==================+P")
+            for index in 0..<tempArray.count {
+                let attrs = tempArray[index]
                 //判断是否是交叉区域(用contains的话,边界会有问题)
                 if !visiableRect.intersects(attrs.frame) {
+//                    print("不在区域内==================\(attrs.indexPath.row)")
+                    print("index=\(index)不在区域内")
                     continue
                 }
-                print("===========================================\(attrs.indexPath.row)")
-                print("visiableRect=\(visiableRect)")
-                print("attrs.frame1=\(attrs.frame)")
-                print("attrs.indexPath.row=\(attrs.indexPath.row)")
+
+//                print("visiableRect=\(visiableRect)")
+//                print("attrs.frame1=\(attrs.frame)")
+//                print("attrs.indexPath.row=\(attrs.indexPath.row)")
                 //3、计算新的Frame
-                let tempX = attrs.indexPath.row * Int(self.itemSize.width) + Int(self.minimumLineSpacing)*(attrs.indexPath.row - 1)
+                //固定X
+                //let tempX = attrs.indexPath.row * Int(self.itemSize.width) + Int(self.minimumLineSpacing)*(attrs.indexPath.row - 1)
+                //动态X
+                var tempX = attrs.frame.origin.x
+                //获取文本宽度
+                let size = self.delegate?.getItemSize(indexPath: attrs.indexPath)
+                if index > 0 {//获取前一个cell的最大X
+                    let preAttrs = tempArray[index - 1]
+                    tempX = preAttrs.frame.maxX
+                }
                 let tempY = 0
-                let tempWidth = self.itemSize.width
+                let tempWidth = size?.width ?? 0
                 let tempHeight = self.itemSize.height
-                attrs.frame = CGRect(x: tempX, y: tempY, width: Int(tempWidth), height: Int(tempHeight))
+                if (attrs.indexPath.row == 0) || (attrs.indexPath.row == 1) {
+//                    print("===========================================\(attrs.indexPath.row)")
+                    if index > 0 {
+                        let preAttrs = tempArray[index - 1]
+//                        print("preAttrs.frame=\(preAttrs.frame)")
+                    }
+//                    print("attrs.frame变化前=\(attrs.frame)")
+                }
+                attrs.frame = CGRect(x: Int(tempX), y: tempY, width: Int(tempWidth), height: Int(tempHeight))
+                if (attrs.indexPath.row == 0) || (attrs.indexPath.row == 1) {
+//                    print("attrs.frame变化后=\(attrs.frame)")
+                }
+                if index == 0 {
+                    print("collectionView偏移=\(self.collectionView?.contentOffset.x)")
+                    print("attrs.indexPath.row=\(attrs.indexPath.row)")
+                    print("frame=\(attrs.frame)")
+                }
                 //4、添加到数组
                 resultArray.append(attrs)
             }
             return resultArray
-        }else{
-            return resultArray
-        }
+//        }else{
+//            return resultArray
+//        }
     }
 }

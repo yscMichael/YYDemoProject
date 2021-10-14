@@ -60,13 +60,16 @@ class YYSystemFlowLayoutController: UIViewController {
     lazy var dataSource: Array<String> = {
         var dataSource = Array<String>()
         //添加数据源
+//        for index in 0...15*5{
+//            dataSource.append("\(index)")
+//        }
         for index in 0...15*5{
             if index % 2 == 0 {
-                dataSource.append("\(index)-title22")
+                dataSource.append("\(index)-titletitle-\(index)")
             }else if index % 3 == 0 {
-                dataSource.append("\(index)-title333")
+                dataSource.append("\(index)-titletitletitle-\(index)")
             }else{
-                dataSource.append("\(index)-title")
+                dataSource.append("\(index)-title-\(index)")
             }
         }
         return dataSource
