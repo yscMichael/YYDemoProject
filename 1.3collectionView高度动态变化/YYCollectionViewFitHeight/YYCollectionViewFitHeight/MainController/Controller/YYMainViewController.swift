@@ -37,10 +37,8 @@ class YYMainViewController: UIViewController {
             make.top.equalTo(self.view).offset(50)
             make.left.equalTo(self.view).offset(10)
             make.right.equalTo(self.view).offset(-10)
-            make.height.equalTo(SCREEN_HEIGHT - 400)
+            make.height.equalTo(1000)
         }
-        print("初始化高度========+P")
-        print(SCREEN_HEIGHT - 400)
         self.backButton.snp.makeConstraints { make in
             make.bottom.equalTo(self.view).offset(-20)
             make.left.right.equalTo(self.view)
@@ -55,9 +53,9 @@ class YYMainViewController: UIViewController {
     
     //MARK: - Event Response -
     //MARK:点击按钮
-    @objc func clickBackButton() -> () {
+    @objc func clickAddButton() -> () {
         //数据源添加数据
-        let totalCount = self.dataSource.count - 1
+        let totalCount = self.dataSource.count
         for index in totalCount...(totalCount+1) {
             self.dataSource.append("\(index)-title")
         }
@@ -112,7 +110,7 @@ class YYMainViewController: UIViewController {
         let button = UIButton()
         button.setTitle("测试按钮", for: .normal)
         button.backgroundColor = UIColor.blue
-        button.addTarget(self, action: #selector(clickBackButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(clickAddButton), for: .touchUpInside)
         return button
     }()
 }
@@ -123,26 +121,24 @@ class YYMainViewController: UIViewController {
 //MARK:UICollectionViewDelegate
 extension YYMainViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print("willDisplay==========P===1")
-        print(indexPath.row)
-        print(collectionView.indexPathsForVisibleItems)
-        if indexPath.row == collectionView.indexPathsForVisibleItems.last?.row {
-            
-        }
-        //动态计算高度
-        DispatchQueue.main.async {
-            let contentSizeHeight = self.listCollectionView.contentSize.height
-            //print(contentSizeHeight)
-            self.listCollectionView.snp.updateConstraints { make in
-                make.height.equalTo(contentSizeHeight)
+        print("willDisplay===========================P===1")
+        print("将要展示的row=\(indexPath.row)")
+        print("已经展示的lastRow=\(collectionView.indexPathsForVisibleItems.last?.row ?? -1)")
+        print("当前已经展示的数组=\(collectionView.indexPathsForVisibleItems)")
+        
+        //这里可以根据列数,减少一次刷新次数(比如说这里是2列)
+        if (indexPath.row + 1) % 2 == 1{//此时才刷新
+            print("刷新YES")
+            //动态设置CollectionView
+            DispatchQueue.main.async {
+                let contentSizeHeight = self.listCollectionView.contentSize.height
+                self.listCollectionView.snp.updateConstraints { make in
+                    make.height.equalTo(contentSizeHeight)
+                }
             }
+        }else{
+            print("刷新NO")
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print("didEndDisplaying==========P===2")
-        print(indexPath.row)
-        print(collectionView.indexPathsForVisibleItems)
     }
 }
 
