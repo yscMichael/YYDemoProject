@@ -21,7 +21,7 @@ class YYCustomFlowLayoutOneController: UIViewController {
     //MARK:初始化Views
     func initViews() -> () {
         self.view.backgroundColor = UIColor.white
-        self.title = "自定义FlowLayout"
+        self.title = "自定义FlowLayout-1"
         
         self.view.addSubview(self.listCollectionView)
         self.listCollectionView.reloadData()
@@ -68,7 +68,7 @@ class YYCustomFlowLayoutOneController: UIViewController {
     //MARK:flowLayout
     lazy var flowLayout: YYLineFlowOneLayout = {
         let flowLayout = YYLineFlowOneLayout.init()
-        flowLayout.itemSize = CGSize(width: CGFloat(YYCellWidth), height: CGFloat(YYCellHeight))
+        flowLayout.itemSize = CGSize(width:0.1, height: CGFloat(YYCellHeight))
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0

@@ -21,7 +21,7 @@ class YYCustomFlowLayoutTwoController: UIViewController {
     //MARK:初始化Views
     func initViews() -> () {
         self.view.backgroundColor = UIColor.white
-        self.title = "自定义FlowLayout"
+        self.title = "自定义FlowLayout-2"
         
         self.view.addSubview(self.listCollectionView)
         self.listCollectionView.reloadData()
@@ -38,10 +38,6 @@ class YYCustomFlowLayoutTwoController: UIViewController {
     
     //初始化数据
     func initData() -> () {
-        let visiableRect = CGRect(x: 0, y: 0, width: 414, height: 200)
-        let attrsFrame1 = CGRect(x: 0, y: 0, width: 0, height: 0)
-        
-        
         
     }
     
@@ -76,9 +72,9 @@ class YYCustomFlowLayoutTwoController: UIViewController {
     //MARK:flowLayout
     lazy var flowLayout: YYLineFlowOneLayout = {
         let flowLayout = YYLineFlowOneLayout.init()
-        flowLayout.itemSize = CGSize(width: CGFloat(YYCellWidth), height: CGFloat(YYCellHeight))
+        flowLayout.itemSize = CGSize(width: 0.1, height: CGFloat(YYCellHeight))
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.delegate = self
         return flowLayout
