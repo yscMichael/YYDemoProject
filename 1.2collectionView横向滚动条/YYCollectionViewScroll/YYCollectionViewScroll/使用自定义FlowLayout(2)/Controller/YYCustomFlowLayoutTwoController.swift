@@ -70,12 +70,8 @@ class YYCustomFlowLayoutTwoController: UIViewController {
     }()
     
     //MARK:flowLayout
-    lazy var flowLayout: YYLineFlowOneLayout = {
-        let flowLayout = YYLineFlowOneLayout.init()
-        flowLayout.itemSize = CGSize(width: 0.1, height: CGFloat(YYCellHeight))
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.minimumInteritemSpacing = 0
+    lazy var flowLayout: YYLineFlowTwoLayout = {
+        let flowLayout = YYLineFlowTwoLayout.init()
         flowLayout.delegate = self
         return flowLayout
     }()
