@@ -34,6 +34,8 @@ extension YYLineFlowOneLayout{
     override func prepare() {
         super.prepare()
         print("prepare==========P")
+        //这里不清空数组,是因为系统的永远不会改变,而layoutAttributesForElements是以前一个属性进行定位的
+        //要是清空了,会出问题
         if self.allAttributesArray.count != 0 {
             return
         }
