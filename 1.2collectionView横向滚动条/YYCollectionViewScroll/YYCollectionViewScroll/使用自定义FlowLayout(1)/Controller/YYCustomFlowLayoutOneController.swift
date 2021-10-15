@@ -53,11 +53,7 @@ class YYCustomFlowLayoutOneController: UIViewController {
     //MARK:数据源
     lazy var dataSource: Array<String> = {
         var dataSource = Array<String>()
-        //添加数据源
-//        for index in 0...15*5{
-//            dataSource.append("\(index)")
-//        }
-        for index in 0...15*5{
+        for index in 0...15*2{
             if index % 2 == 0 {
                 dataSource.append("\(index)-titletitle-\(index)")
             }else if index % 3 == 0 {
@@ -83,6 +79,7 @@ class YYCustomFlowLayoutOneController: UIViewController {
     //MARK:UICollectionView
     lazy var listCollectionView: UICollectionView = {
         let listCollectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: self.flowLayout)
+        listCollectionView.showsHorizontalScrollIndicator = false
         listCollectionView.layer.borderWidth = 1.0
         listCollectionView.layer.borderColor = UIColor.blue.cgColor
         listCollectionView.backgroundColor = UIColor.white
