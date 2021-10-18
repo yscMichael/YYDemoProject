@@ -27,7 +27,7 @@ class YYCollectionViewCell: UICollectionViewCell {
     //MARK:IndexPath
     var indexPath: IndexPath?
     //MARK:UICollectionView
-    var collectionView: UICollectionView?
+    var parentCollectionView: UICollectionView?
     
     //MARK:- Life Cycle -
     override func awakeFromNib() {
@@ -55,7 +55,7 @@ class YYCollectionViewCell: UICollectionViewCell {
         if !(self.deviceModel?.isShowSubDevice ?? false) {
             self.deviceModel?.isOpenSubDevice = false
         }
-        self.collectionView?.reloadItems(at: [self.indexPath!])
+        self.parentCollectionView?.reloadItems(at: [self.indexPath!])
     }
     
     //MARK:点击展开按钮
@@ -65,7 +65,7 @@ class YYCollectionViewCell: UICollectionViewCell {
             self.deviceModel?.isOpenSubDevice = !(self.deviceModel?.isOpenSubDevice ?? false)
             //这里要重新计算当前cell高度
             self.calculateCellHeight()
-            self.collectionView?.reloadItems(at: [self.indexPath!])
+            self.parentCollectionView?.reloadItems(at: [self.indexPath!])
         }
     }
     
@@ -77,7 +77,7 @@ class YYCollectionViewCell: UICollectionViewCell {
         //赋值
         self.deviceModel = deviceModel
         self.indexPath = indexPath
-        self.collectionView = collectionView
+        self.parentCollectionView = collectionView
         //处理显示
         self.titleLabel.text = deviceModel.deviceName
         //是否显示子设备
@@ -90,6 +90,7 @@ class YYCollectionViewCell: UICollectionViewCell {
         self.buttonCollectionView.reloadData()
     }
     
+    //MARK:- Private Methods -
     //MARK:计算Cell的高度
     func calculateCellHeight() -> () {
         var height = 210
@@ -120,7 +121,6 @@ extension YYCollectionViewCell: UICollectionViewDataSource{
         //return 0
         //这里是子设备的数量
         if self.deviceModel?.isShowSubDevice ?? false{
-            print("子设备数量=\(self.deviceModel?.subDeviceCount ?? 0)")
             return self.deviceModel?.subDeviceCount ?? 0
         }else{
             return 0
