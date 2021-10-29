@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		116068AE272B8CBE0021DDAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116068AD272B8CBD0021DDAB /* UIColor+Extension.swift */; };
 		11A71ADB26FC6403003D3743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71ADA26FC6403003D3743 /* AppDelegate.swift */; };
 		11A71ADF26FC6403003D3743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71ADE26FC6403003D3743 /* ViewController.swift */; };
 		11A71AE226FC6403003D3743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A71AE026FC6403003D3743 /* Main.storyboard */; };
 		11A71AE426FC6404003D3743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A71AE326FC6404003D3743 /* Assets.xcassets */; };
 		11A71AE726FC6404003D3743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A71AE526FC6404003D3743 /* LaunchScreen.storyboard */; };
-		11A71AEF26FC641F003D3743 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71AEE26FC641F003D3743 /* UIColor+Extension.swift */; };
 		11A71AF326FC6470003D3743 /* YYMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71AF226FC6470003D3743 /* YYMainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		116068AD272B8CBD0021DDAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		11A71AD726FC6403003D3743 /* YYShadowProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYShadowProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A71ADA26FC6403003D3743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A71ADE26FC6403003D3743 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,7 +25,6 @@
 		11A71AE326FC6404003D3743 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11A71AE626FC6404003D3743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11A71AE826FC6404003D3743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11A71AEE26FC641F003D3743 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "../../../1.collectionView排序/YYCollectionView/YYCollectionView/UIColor+Extension.swift"; sourceTree = "<group>"; };
 		11A71AF226FC6470003D3743 /* YYMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,7 +58,7 @@
 		11A71AD926FC6403003D3743 /* YYShadowProject */ = {
 			isa = PBXGroup;
 			children = (
-				11A71AEE26FC641F003D3743 /* UIColor+Extension.swift */,
+				116068AD272B8CBD0021DDAB /* UIColor+Extension.swift */,
 				11A71ADA26FC6403003D3743 /* AppDelegate.swift */,
 				11A71AF126FC6456003D3743 /* MainController */,
 				11A71AF026FC6427003D3743 /* other */,
@@ -158,8 +158,8 @@
 			files = (
 				11A71ADF26FC6403003D3743 /* ViewController.swift in Sources */,
 				11A71ADB26FC6403003D3743 /* AppDelegate.swift in Sources */,
-				11A71AEF26FC641F003D3743 /* UIColor+Extension.swift in Sources */,
 				11A71AF326FC6470003D3743 /* YYMainViewController.swift in Sources */,
+				116068AE272B8CBE0021DDAB /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
