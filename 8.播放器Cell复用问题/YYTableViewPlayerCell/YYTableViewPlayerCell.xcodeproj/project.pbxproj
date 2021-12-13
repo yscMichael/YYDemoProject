@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		111C607827672FDE0096B686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C607727672FDE0096B686 /* AppDelegate.swift */; };
-		111C607A27672FDE0096B686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C607927672FDE0096B686 /* SceneDelegate.swift */; };
 		111C607C27672FDE0096B686 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C607B27672FDE0096B686 /* ViewController.swift */; };
 		111C607F27672FDE0096B686 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111C607D27672FDE0096B686 /* Main.storyboard */; };
 		111C608127672FDF0096B686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111C608027672FDF0096B686 /* Assets.xcassets */; };
@@ -55,12 +54,13 @@
 		111C60E32767316F0096B686 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60E02767316F0096B686 /* UIColor+Extension.swift */; };
 		111C60E8276732250096B686 /* YYMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60E7276732250096B686 /* YYMainViewController.swift */; };
 		111C60EF276736290096B686 /* YYPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60EE276736290096B686 /* YYPlayerView.swift */; };
+		111C60F827675E8B0096B686 /* YYSingleCellReuseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60F727675E8B0096B686 /* YYSingleCellReuseController.swift */; };
+		111C60FA27675EA00096B686 /* YYManyCellReuseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60F927675EA00096B686 /* YYManyCellReuseController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		111C607427672FDE0096B686 /* YYTableViewPlayerCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYTableViewPlayerCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		111C607727672FDE0096B686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		111C607927672FDE0096B686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		111C607B27672FDE0096B686 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		111C607E27672FDE0096B686 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		111C608027672FDF0096B686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +108,8 @@
 		111C60E02767316F0096B686 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		111C60E7276732250096B686 /* YYMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYMainViewController.swift; sourceTree = "<group>"; };
 		111C60EE276736290096B686 /* YYPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYPlayerView.swift; sourceTree = "<group>"; };
+		111C60F727675E8B0096B686 /* YYSingleCellReuseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYSingleCellReuseController.swift; sourceTree = "<group>"; };
+		111C60F927675EA00096B686 /* YYManyCellReuseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYManyCellReuseController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,14 +144,11 @@
 			children = (
 				111C60DF2767316F0096B686 /* 颜色值 */,
 				111C608E2767306E0096B686 /* SnapKit */,
+				111C60F1276751A10096B686 /* AppDelegate */,
 				111C60E6276732050096B686 /* Main */,
-				111C607727672FDE0096B686 /* AppDelegate.swift */,
-				111C607927672FDE0096B686 /* SceneDelegate.swift */,
-				111C607B27672FDE0096B686 /* ViewController.swift */,
-				111C607D27672FDE0096B686 /* Main.storyboard */,
-				111C608027672FDF0096B686 /* Assets.xcassets */,
-				111C608227672FDF0096B686 /* LaunchScreen.storyboard */,
-				111C608527672FDF0096B686 /* Info.plist */,
+				111C60F3276751D60096B686 /* 单个cell播放器复用演示 */,
+				111C60F4276751EA0096B686 /* 多个cell播放器复用演示 */,
+				111C60F2276751C10096B686 /* other */,
 			);
 			path = YYTableViewPlayerCell;
 			sourceTree = "<group>";
@@ -257,6 +256,66 @@
 			path = "播放器View　";
 			sourceTree = "<group>";
 		};
+		111C60F1276751A10096B686 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				111C607727672FDE0096B686 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		111C60F2276751C10096B686 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				111C607B27672FDE0096B686 /* ViewController.swift */,
+				111C607D27672FDE0096B686 /* Main.storyboard */,
+				111C608027672FDF0096B686 /* Assets.xcassets */,
+				111C608227672FDF0096B686 /* LaunchScreen.storyboard */,
+				111C608527672FDF0096B686 /* Info.plist */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		111C60F3276751D60096B686 /* 单个cell播放器复用演示 */ = {
+			isa = PBXGroup;
+			children = (
+				111C60F527675E1B0096B686 /* Controller */,
+				111C60FB276760B80096B686 /* View */,
+			);
+			path = "单个cell播放器复用演示";
+			sourceTree = "<group>";
+		};
+		111C60F4276751EA0096B686 /* 多个cell播放器复用演示 */ = {
+			isa = PBXGroup;
+			children = (
+				111C60F627675E230096B686 /* Controller */,
+			);
+			path = "多个cell播放器复用演示";
+			sourceTree = "<group>";
+		};
+		111C60F527675E1B0096B686 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				111C60F727675E8B0096B686 /* YYSingleCellReuseController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		111C60F627675E230096B686 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				111C60F927675EA00096B686 /* YYManyCellReuseController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		111C60FB276760B80096B686 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -334,6 +393,7 @@
 				111C60DA2767306F0096B686 /* ConstraintMakerRelatable.swift in Sources */,
 				111C60BE2767306F0096B686 /* ConstraintInsets.swift in Sources */,
 				111C60D52767306F0096B686 /* ConstraintRelatableTarget.swift in Sources */,
+				111C60FA27675EA00096B686 /* YYManyCellReuseController.swift in Sources */,
 				111C60D22767306F0096B686 /* ConstraintItem.swift in Sources */,
 				111C60D72767306F0096B686 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				111C60C92767306F0096B686 /* ConstraintLayoutSupport.swift in Sources */,
@@ -355,7 +415,6 @@
 				111C60C12767306F0096B686 /* ConstraintMakerExtendable.swift in Sources */,
 				111C60D32767306F0096B686 /* Constraint.swift in Sources */,
 				111C60C72767306F0096B686 /* ConstraintView.swift in Sources */,
-				111C607A27672FDE0096B686 /* SceneDelegate.swift in Sources */,
 				111C60C62767306F0096B686 /* UILayoutSupport+Extensions.swift in Sources */,
 				111C60C22767306F0096B686 /* ConstraintPriority.swift in Sources */,
 				111C60B72767306F0096B686 /* ConstraintMultiplierTarget.swift in Sources */,
@@ -371,6 +430,7 @@
 				111C60D92767306F0096B686 /* ConstraintLayoutSupportDSL.swift in Sources */,
 				111C60C52767306F0096B686 /* ConstraintConfig.swift in Sources */,
 				111C60C42767306F0096B686 /* ConstraintDirectionalInsetTarget.swift in Sources */,
+				111C60F827675E8B0096B686 /* YYSingleCellReuseController.swift in Sources */,
 				111C60BF2767306F0096B686 /* ConstraintMakerFinalizable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,7 +580,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JF826FYE3W;
-				INFOPLIST_FILE = YYTableViewPlayerCell/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/YYTableViewPlayerCell/other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,7 +599,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JF826FYE3W;
-				INFOPLIST_FILE = YYTableViewPlayerCell/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/YYTableViewPlayerCell/other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
