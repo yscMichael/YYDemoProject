@@ -56,6 +56,7 @@
 		111C60EF276736290096B686 /* YYPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60EE276736290096B686 /* YYPlayerView.swift */; };
 		111C60F827675E8B0096B686 /* YYSingleCellReuseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60F727675E8B0096B686 /* YYSingleCellReuseController.swift */; };
 		111C60FA27675EA00096B686 /* YYManyCellReuseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60F927675EA00096B686 /* YYManyCellReuseController.swift */; };
+		111C60FF27676C120096B686 /* YYSingleOtherCellReuseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C60FE27676C120096B686 /* YYSingleOtherCellReuseController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		111C60EE276736290096B686 /* YYPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYPlayerView.swift; sourceTree = "<group>"; };
 		111C60F727675E8B0096B686 /* YYSingleCellReuseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYSingleCellReuseController.swift; sourceTree = "<group>"; };
 		111C60F927675EA00096B686 /* YYManyCellReuseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYManyCellReuseController.swift; sourceTree = "<group>"; };
+		111C60FE27676C120096B686 /* YYSingleOtherCellReuseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYSingleOtherCellReuseController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +148,8 @@
 				111C608E2767306E0096B686 /* SnapKit */,
 				111C60F1276751A10096B686 /* AppDelegate */,
 				111C60E6276732050096B686 /* Main */,
-				111C60F3276751D60096B686 /* 单个cell播放器复用演示 */,
+				111C60F3276751D60096B686 /* 单个cell播放器复用演示(不连续) */,
+				111C60FC27676BD60096B686 /* 单个cell播放器复用演示(连续) */,
 				111C60F4276751EA0096B686 /* 多个cell播放器复用演示 */,
 				111C60F2276751C10096B686 /* other */,
 			);
@@ -234,18 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				111C60E5276731F40096B686 /* Controller */,
-				111C60E9276734D50096B686 /* View */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		111C60E9276734D50096B686 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				111C608B276730260096B686 /* Cell */,
-				111C60F02767362E0096B686 /* 播放器View　 */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 		111C60F02767362E0096B686 /* 播放器View　 */ = {
@@ -276,13 +269,13 @@
 			path = other;
 			sourceTree = "<group>";
 		};
-		111C60F3276751D60096B686 /* 单个cell播放器复用演示 */ = {
+		111C60F3276751D60096B686 /* 单个cell播放器复用演示(不连续) */ = {
 			isa = PBXGroup;
 			children = (
 				111C60F527675E1B0096B686 /* Controller */,
 				111C60FB276760B80096B686 /* View */,
 			);
-			path = "单个cell播放器复用演示";
+			path = "单个cell播放器复用演示(不连续)";
 			sourceTree = "<group>";
 		};
 		111C60F4276751EA0096B686 /* 多个cell播放器复用演示 */ = {
@@ -312,8 +305,26 @@
 		111C60FB276760B80096B686 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				111C608B276730260096B686 /* Cell */,
+				111C60F02767362E0096B686 /* 播放器View　 */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		111C60FC27676BD60096B686 /* 单个cell播放器复用演示(连续) */ = {
+			isa = PBXGroup;
+			children = (
+				111C60FD27676BF30096B686 /* Controller */,
+			);
+			path = "单个cell播放器复用演示(连续)";
+			sourceTree = "<group>";
+		};
+		111C60FD27676BF30096B686 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				111C60FE27676C120096B686 /* YYSingleOtherCellReuseController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +421,7 @@
 				111C60BD2767306F0096B686 /* ConstraintPriorityTarget.swift in Sources */,
 				111C60E8276732250096B686 /* YYMainViewController.swift in Sources */,
 				111C60D12767306F0096B686 /* ConstraintView+Extensions.swift in Sources */,
+				111C60FF27676C120096B686 /* YYSingleOtherCellReuseController.swift in Sources */,
 				111C60CA2767306F0096B686 /* Typealiases.swift in Sources */,
 				111C607827672FDE0096B686 /* AppDelegate.swift in Sources */,
 				111C60C12767306F0096B686 /* ConstraintMakerExtendable.swift in Sources */,

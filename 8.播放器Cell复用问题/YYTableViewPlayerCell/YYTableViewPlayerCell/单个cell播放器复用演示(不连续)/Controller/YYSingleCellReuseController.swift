@@ -11,8 +11,6 @@ class YYSingleCellReuseController: UIViewController {
     //MARK: - 属性 -
     ///可见cell(方案一)
     var visibleFirstCell: SPCHomeListCollectionCell?
-    ///cellArray(方案二)
-    var visibleCellsArray: Array<UICollectionViewCell> = Array<UICollectionViewCell>()
     ///数据源
     var dataSource: Array<String> = Array<String>()
     
@@ -26,17 +24,14 @@ class YYSingleCellReuseController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        //1、界面显示的时候才开始播放(界面未显示没必要播放)
         //这里开始查找可以看见的cell,然后添加播放器View
         let array = self.listCollectionView.visibleCells
         print("viewDidAppear============+P---\(array.count)")
-        self.visibleCellsArray.removeAll()
-        self.visibleCellsArray.append(contentsOf: array)
-        //获取第一个cell,添加playerView
-        let firstCell = self.visibleCellsArray.first as! SPCHomeListCollectionCell
-        let playeView = YYPlayerView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        playeView.nameLabel.text = "测试复用========="
-        firstCell.playerView = playeView
-        firstCell.addSubview(playeView)
+        //2、获取第一个cell,添加playerView
+        let firstCell = array.first as! SPCHomeListCollectionCell
+        self.createPlayView(cell: firstCell)
+        //3、指针指向,方便后续对比
         self.visibleFirstCell = firstCell
     }
     
@@ -67,6 +62,17 @@ class YYSingleCellReuseController: UIViewController {
     //MARK: - Public  Methods -
     
     //MARK: - Private Methods -
+    //MARK:创建播放器并进行添加
+    func createPlayView(cell: SPCHomeListCollectionCell) -> () {
+        //1、创建View
+        let playeView = YYPlayerView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        playeView.nameLabel.text = "测试复用========="
+        cell.playerView = playeView
+        cell.addSubview(playeView)
+        cell.playerView?.beginTimer()
+        //2、定时器变量加1
+        SPCGlobalTimeCount += 1
+    }
     
     //MARk: - lazy Property -
     
@@ -119,6 +125,8 @@ extension YYSingleCellReuseController: UIScrollViewDelegate{
                     self.visibleFirstCell?.playerView?.testTimer = nil
                     self.visibleFirstCell?.playerView?.removeFromSuperview()
                     self.visibleFirstCell?.playerView = nil
+                }else{
+                    print("开始滚动============+P---visibleFirstCell销毁playerView---4")
                 }
             }
         }else{

@@ -9,6 +9,8 @@ import UIKit
 //MARK:- 常量 -
 /// 屏幕的宽
 let ScreenWidth = UIScreen.main.bounds.size.width
+///定时器全局变量
+var SPCGlobalTimeCount = -1
 
 class YYMainViewController: UIViewController {
     //MARK: - 属性 -

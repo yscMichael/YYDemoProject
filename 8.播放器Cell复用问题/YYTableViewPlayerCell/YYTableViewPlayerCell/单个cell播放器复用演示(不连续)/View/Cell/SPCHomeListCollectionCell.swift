@@ -34,7 +34,6 @@ class SPCHomeListCollectionCell: UICollectionViewCell {
         super.init(frame: frame)
         self.initViews()
         self.layoutViews()
-        
         self.layer.borderWidth = 1.0
         self.layer.borderColor = UIColor.green.cgColor
     }
@@ -104,7 +103,6 @@ class SPCHomeListCollectionCell: UICollectionViewCell {
     }
     
     //MARK:- Public Methods -
-    //MARK:模型赋值
     
     //MARK: - lazy  Methods -
     //MARK:- 一级View -
@@ -128,7 +126,6 @@ class SPCHomeListCollectionCell: UICollectionViewCell {
     }()
     
     //MARK:- 三级View-left -
-    
     //MARK:设备名称
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel.init(frame: CGRect.zero)
