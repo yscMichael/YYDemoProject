@@ -108,7 +108,7 @@ class YYMainViewController: UIViewController {
             self.listCollectionView.endInteractiveMovement()
             self.dragingIndexPath = nil
             //重新刷新列表
-            self.listCollectionView.reloadData()
+            //self.listCollectionView.reloadData()
             break
         default:
             if self.dragingIndexPath == nil {
