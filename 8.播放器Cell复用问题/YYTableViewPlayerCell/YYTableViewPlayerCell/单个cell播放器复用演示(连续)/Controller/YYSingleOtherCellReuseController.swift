@@ -11,6 +11,8 @@ class YYSingleOtherCellReuseController: UIViewController {
     //MARK: - 属性 -
     ///可见cell(方案一)
     var visibleFirstCell: SPCHomeListCollectionCell?
+    ///播放器View
+    var playView: YYPlayerView?
     ///数据源
     var dataSource: Array<String> = Array<String>()
     
@@ -24,15 +26,10 @@ class YYSingleOtherCellReuseController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //1、界面显示的时候才开始播放(界面未显示没必要播放)
-        //这里开始查找可以看见的cell,然后添加播放器View
-        let array = self.listCollectionView.visibleCells
-        print("viewDidAppear============+P---\(array.count)")
-        //2、获取第一个cell,添加playerView
-        let firstCell = array.first as! SPCHomeListCollectionCell
+        //1、获取第一个Cell
+        let firstCell = self.getFirstCell()
+        //2、添加playerView
         self.createPlayView(cell: firstCell)
-        //3、指针指向,方便后续对比
-        self.visibleFirstCell = firstCell
     }
     
     //MARK:初始化Views
@@ -62,15 +59,28 @@ class YYSingleOtherCellReuseController: UIViewController {
     //MARK: - Public  Methods -
     
     //MARK: - Private Methods -
+    //MARK:获取第一个cell
+    func getFirstCell() -> SPCHomeListCollectionCell {
+        //1、获取第一个可见Cell
+        let array = self.listCollectionView.visibleCells
+        print("当前可见cell数量============+P---\(array.count)")
+        let firstCell = array.first as! SPCHomeListCollectionCell
+        return firstCell
+    }
+    
     //MARK:创建播放器并进行添加
     func createPlayView(cell: SPCHomeListCollectionCell) -> () {
         //1、创建View
-        let playeView = YYPlayerView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        playeView.nameLabel.text = "测试复用========="
-        cell.playerView = playeView
-        cell.addSubview(playeView)
+        let playView = YYPlayerView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        playView.nameLabel.text = "测试复用========="
+        cell.addSubview(playView)
+        cell.playerView = playView
+        self.playView = playView
+        self.visibleFirstCell = cell
+        self.playView?.beginTimer()
         //2、定时器变量加1
         SPCGlobalTimeCount += 1
+        print("SPCGlobalTimeCount---------\(SPCGlobalTimeCount)")
     }
     
     //MARk: - lazy Property -
@@ -120,8 +130,7 @@ extension YYSingleOtherCellReuseController: UIScrollViewDelegate{
                 if self.visibleFirstCell?.playerView != nil {
                     print("开始滚动============+P---visibleFirstCell有playerView---3")
                     //先停止播放器
-                    self.visibleFirstCell?.playerView?.testTimer?.invalidate()
-                    self.visibleFirstCell?.playerView?.testTimer = nil
+                    self.visibleFirstCell?.playerView?.closeTimer()
                     self.visibleFirstCell?.playerView?.removeFromSuperview()
                     self.visibleFirstCell?.playerView = nil
                 }else{
@@ -134,16 +143,23 @@ extension YYSingleOtherCellReuseController: UIScrollViewDelegate{
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        //print("停止Drag============+P---\(decelerate)")
+        print("停止Drag============+P---\(decelerate)")
         //如果手指一直拖着,这个时候不会惯性滑动,不会走scrollViewDidEndDecelerating方法
         if !decelerate {
-            
+            //获取第一个cell
+            let firstCell = self.getFirstCell()
+            //创建播放器
+            self.createPlayView(cell: firstCell)
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         print("停止滚动============+P")
         //停止滚动找出第一个,让第一个cell添加PlayerView
+        //获取第一个cell
+        let firstCell = self.getFirstCell()
+        //创建播放器
+        self.createPlayView(cell: firstCell)
     }
 }
 

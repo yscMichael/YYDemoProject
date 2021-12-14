@@ -33,6 +33,7 @@ class YYMainViewController: UIViewController {
     func initViews() -> () {
         self.title = "主控制器"
         self.view.addSubview(self.singleButton)
+        self.view.addSubview(self.singleOtherButton)
         self.view.addSubview(self.manyButton)
     }
     
@@ -44,9 +45,15 @@ class YYMainViewController: UIViewController {
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
-        self.manyButton.snp.makeConstraints { make in
+        self.singleOtherButton.snp.makeConstraints { make in
             make.centerX.equalTo(self.singleButton.snp.centerX)
             make.top.equalTo(self.singleButton.snp.bottom).offset(20)
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+        }
+        self.manyButton.snp.makeConstraints { make in
+            make.centerX.equalTo(self.singleOtherButton.snp.centerX)
+            make.top.equalTo(self.singleOtherButton.snp.bottom).offset(20)
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
@@ -58,10 +65,16 @@ class YYMainViewController: UIViewController {
     }
     
     //MARK: - Event Response -
-    //MARK:点击单个播放器按钮
+    //MARK:点击单个播放器按钮(不连续)
     @objc func clickSingleButton(_ sender: UIButton) -> () {
         let singleCellReuseCtrl = YYSingleCellReuseController()
         self.navigationController?.pushViewController(singleCellReuseCtrl, animated: true)
+    }
+    
+    //MARK:点击单个播放器按钮(连续)
+    @objc func clickSingleOtherButton(_ sender: UIButton) -> () {
+        let singleOtherCellReuseCtrl = YYSingleOtherCellReuseController()
+        self.navigationController?.pushViewController(singleOtherCellReuseCtrl, animated: true)
     }
     
     //MARK:点击多个播放器按钮
@@ -80,10 +93,20 @@ class YYMainViewController: UIViewController {
     //MARK:单个播放器
     lazy var singleButton: UIButton = {
         let singleButton = UIButton.init(frame: CGRect.zero)
-        singleButton.setTitle("单个播放器", for: .normal)
+        singleButton.setTitle("单个播放器(不连续)", for: .normal)
         singleButton.backgroundColor = UIColor.blue
         singleButton.titleLabel?.textColor = UIColor.white
         singleButton.addTarget(self, action: #selector(clickSingleButton(_:)), for: .touchUpInside)
+        return singleButton
+    }()
+    
+    //MARK:单个播放器other
+    lazy var singleOtherButton: UIButton = {
+        let singleButton = UIButton.init(frame: CGRect.zero)
+        singleButton.setTitle("单个播放器(连续)", for: .normal)
+        singleButton.backgroundColor = UIColor.blue
+        singleButton.titleLabel?.textColor = UIColor.white
+        singleButton.addTarget(self, action: #selector(clickSingleOtherButton(_:)), for: .touchUpInside)
         return singleButton
     }()
     
