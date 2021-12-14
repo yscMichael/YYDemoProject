@@ -50,6 +50,7 @@ class SPCHomeListCollectionCell: UICollectionViewCell {
         //二级View
         self.mainContainerView.addSubview(self.leftContainerView)
         self.mainContainerView.addSubview(self.rightContainerView)
+        self.mainContainerView.addSubview(self.centerView)
         //三级View-left
         self.leftContainerView.addSubview(self.nameLabel)//设备名称
         //三级View-right
@@ -73,6 +74,10 @@ class SPCHomeListCollectionCell: UICollectionViewCell {
         self.rightContainerView.snp.makeConstraints { make in
             make.top.right.bottom.equalToSuperview()
             make.width.equalTo(SPCRightContainerViewWidth)
+        }
+        self.centerView.snp.makeConstraints { make in
+            make.center.equalToSuperview().offset(0)
+            make.width.height.equalTo(10)
         }
         //三级View-left
         //设备名称
@@ -168,6 +173,13 @@ class SPCHomeListCollectionCell: UICollectionViewCell {
         let setImageViewFlag = UIImageView.init(frame: CGRect.zero)
         setImageViewFlag.image = UIImage(named: "news_list_choose03_selected")
         return setImageViewFlag
+    }()
+    
+    //MARK:添加一个中心点
+    lazy var centerView: UIView = {
+        let centerView = UIView.init(frame: CGRect.zero)
+        centerView.backgroundColor = UIColor.red
+        return centerView
     }()
     
     //MARK:当前分页Label
