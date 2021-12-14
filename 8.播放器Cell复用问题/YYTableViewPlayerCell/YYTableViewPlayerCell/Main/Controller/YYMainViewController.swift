@@ -14,12 +14,6 @@ var SPCGlobalTimeCount = -1
 
 class YYMainViewController: UIViewController {
     //MARK: - 属性 -
-    ///可见cell(方案一)
-    var visibleFirstCell: SPCHomeListCollectionCell?
-    ///cellArray(方案二)
-    var visibleCellsArray: Array<UICollectionViewCell> = Array<UICollectionViewCell>()
-    ///数据源
-    var dataSource: Array<String> = Array<String>()
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
