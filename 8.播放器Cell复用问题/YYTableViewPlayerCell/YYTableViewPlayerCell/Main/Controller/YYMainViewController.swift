@@ -11,8 +11,6 @@ import UIKit
 let ScreenWidth = UIScreen.main.bounds.size.width
 /// 屏幕的高
 let ScreenHeight = UIScreen.main.bounds.size.height
-///定时器全局变量
-var SPCGlobalTimeCount = -1
 /// 导航栏高度:通用
 let NavgationBarHeight = UINavigationController().navigationBar.frame.size.height
 

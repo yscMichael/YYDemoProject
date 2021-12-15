@@ -11,6 +11,8 @@ class YYPlayerView: UIView {
     //MARK:- 属性 -
     //MARK:定时器
     var testTimer: Timer?
+    //MARK:对应cell的name
+    var cellText: String?
     
     //MARK:- Life Cycle -
     override init(frame: CGRect) {
@@ -44,13 +46,13 @@ class YYPlayerView: UIView {
     //MARK: - Private Methods -
     //MARK:定时器方法
     @objc func timeCount() -> () {
-        print("定时器=================\(SPCGlobalTimeCount)")
+        print("定时器=================\(self.cellText ?? "")")
     }
     
     //MARK:开启定时器
     func beginTimer() -> () {
         //开启一个定时器用看看缓存
-        self.testTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeCount), userInfo: nil, repeats: true)
+        self.testTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(timeCount), userInfo: nil, repeats: true)
     }
     
     //MARK:关闭定时器

@@ -37,7 +37,7 @@ class YYSingleCellReuseController: UIViewController {
     
     //MARK:初始化Views
     func initViews() -> () {
-        self.title = "主控制器"
+        self.title = "单个播放器(不连续)"
         self.view.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.isTranslucent = false
         self.view.addSubview(self.listCollectionView)
@@ -66,12 +66,11 @@ class YYSingleCellReuseController: UIViewController {
     func createPlayView(cell: SPCHomeListCollectionCell) -> () {
         //1、创建View
         let playeView = YYPlayerView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        playeView.nameLabel.text = "测试复用========="
+        playeView.nameLabel.text = cell.nameLabel.text
+        playeView.cellText = cell.nameLabel.text
         cell.playerView = playeView
         cell.addSubview(playeView)
         cell.playerView?.beginTimer()
-        //2、定时器变量加1
-        SPCGlobalTimeCount += 1
     }
     
     //MARk: - lazy Property -
