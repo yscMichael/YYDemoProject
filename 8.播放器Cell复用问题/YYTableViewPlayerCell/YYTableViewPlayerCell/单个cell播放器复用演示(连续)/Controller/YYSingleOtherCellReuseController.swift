@@ -133,7 +133,7 @@ class YYSingleOtherCellReuseController: UIViewController {
         playView.beginTimer()
     }
     
-    //MARK:scrollView滚动的时候
+    //MARK:scrollView滚动的时候(移出播放器,很关键,会影响到复用)
     func scrollViewScroll() -> () {
         //获取可见的cell
         let visibleCellArray = self.listCollectionView.visibleCells
@@ -154,7 +154,7 @@ class YYSingleOtherCellReuseController: UIViewController {
         }
     }
     
-    //MARK:scrollView滚动停止创建播放器
+    //MARK:scrollView滚动停止(创建播放器)
     func scrollViewStop() -> () {
         //获取第一个cell
         //let firstCell = self.getFirstVisiableCell()

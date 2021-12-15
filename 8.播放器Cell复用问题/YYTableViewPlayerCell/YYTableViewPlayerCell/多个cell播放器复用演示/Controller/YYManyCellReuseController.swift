@@ -31,6 +31,18 @@ class YYManyCellReuseController: UIViewController {
         self.initPlayerView(cellArray: cellArray)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //遍历数组销毁播放器
+        for playingCell in self.playingCellArray {
+            if playingCell != nil {
+                playingCell?.playerView?.closeTimer()
+                playingCell?.playerView?.removeFromSuperview()
+                playingCell?.playerView = nil
+            }
+        }
+    }
+    
     //MARK:初始化Views
     func initViews() -> () {
         self.title = "多个播放器"
@@ -96,24 +108,26 @@ class YYManyCellReuseController: UIViewController {
         }
     }
     
-    //MARK:scrollView滚动的时候(只管停止播放)
+    //MARK:scrollView滚动的时候(只管停止播放,很重要,处理不好会影响复用)
     func scrollViewScroll() -> () {
         //获取当前可见的cell
         let visibleCellArray = self.getAllVisiableCell()
         //visibleCellArray和playingCellArray对比
-        for playingCell in self.playingCellArray {
-            if playingCell != nil {
+        self.playingCellArray = self.playingCellArray.filter { playingCell in
+            if playingCell != nil{
                 if !visibleCellArray.contains(playingCell!) {//不包含
                     //播放器销毁
                     playingCell?.playerView?.closeTimer()
                     playingCell?.playerView?.removeFromSuperview()
                     playingCell?.playerView = nil
-                    //playingCell销毁
-                    var tempPlayingCell = playingCell
-                    tempPlayingCell = nil
+                    //移出cell
+                    return false
                 }
             }
+            return true
         }
+        print("当前数组更新===========P")
+        print(self.playingCellArray.count)
     }
     
     //MARK:scrollView滚动停止(创建播放器)
@@ -124,6 +138,7 @@ class YYManyCellReuseController: UIViewController {
         var resultArray = Array<SPCHomeListCollectionCell>()
         for newCell in visibleCellArray {
             if !self.playingCellArray.contains(newCell) {//不是同一个才重新创建
+                print("NO是同一个不用创建===========P")
                 //进一步销毁播放器
                 if newCell.playerView != nil {
                     newCell.playerView?.closeTimer()
@@ -132,6 +147,8 @@ class YYManyCellReuseController: UIViewController {
                 }
                 //添加数组
                 resultArray.append(newCell)
+            }else{
+                print("YES是同一个不用创建===========P")
             }
         }
         //整体创建播放器
