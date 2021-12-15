@@ -12,8 +12,6 @@ class YYManyCellReuseController: UIViewController {
     ///可见cell(方案二)
     ///可见cell数组
     var playingCellArray: Array<SPCHomeListCollectionCell?> = Array<SPCHomeListCollectionCell?>()
-    ///播放器View数组
-    var playerViewArray: Array<YYPlayerView?> = Array<YYPlayerView?>()
     ///数据源
     var dataSource: Array<String> = Array<String>()
     
@@ -74,6 +72,7 @@ class YYManyCellReuseController: UIViewController {
         var resultArray = Array<SPCHomeListCollectionCell>()
         for cell in visiableCellArray {
             let tempCell = cell as! SPCHomeListCollectionCell
+            print("可见cell------\(tempCell.nameLabel.text ?? "")")
             resultArray.append(tempCell)
         }
         //3、直接返回
@@ -82,38 +81,48 @@ class YYManyCellReuseController: UIViewController {
     
     //MARK:初始化播放cell
     func initPlayerView(cellArray: Array<SPCHomeListCollectionCell>) -> () {
-        //1、销毁所有播放器
-        for tempPlayerView in self.playerViewArray {
-            var targetPlayerView = tempPlayerView
-            targetPlayerView?.closeTimer()
-            targetPlayerView = nil
-        }
-        //2、获取所有要播放的cell
-        self.playingCellArray.removeAll()
+        //1、获取所有要播放的cell
         for cell in cellArray {
-            //保存播放cell
-            self.playingCellArray.append(cell)
             //重新创建播放器
             let playView = YYPlayerView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
             playView.nameLabel.text = cell.nameLabel.text
             playView.cellText = cell.nameLabel.text
-            //保存播放器
-            self.playerViewArray.append(playView)
-            //添加到目标cell
+            //添加到目标cell并保存cell
             cell.playerView = playView
             cell.addSubview(playView)
+            self.playingCellArray.append(cell)
             //开始播放
             playView.beginTimer()
         }
     }
     
-    //MARK:scrollView滚动停止创建播放器
+    //MARK:scrollView滚动的时候(只管停止播放)
+    func scrollViewScroll() -> () {
+        //获取当前可见的cell
+        let visibleCellArray = self.getAllVisiableCell()
+        //visibleCellArray和playingCellArray对比
+        for playingCell in self.playingCellArray {
+            if playingCell != nil {
+                if !visibleCellArray.contains(playingCell!) {//不包含
+                    //播放器销毁
+                    playingCell?.playerView?.closeTimer()
+                    playingCell?.playerView?.removeFromSuperview()
+                    playingCell?.playerView = nil
+                    //playingCell销毁
+                    var tempPlayingCell = playingCell
+                    tempPlayingCell = nil
+                }
+            }
+        }
+    }
+    
+    //MARK:scrollView滚动停止(创建播放器)
     func scrollViewStop() -> () {
-        //获取所有可见cell
-        let allCellArray = self.getAllVisiableCell()
-        //allCellArray和playingCellArray对比
+        //获取当前可见的cell
+        let visibleCellArray = self.getAllVisiableCell()
+        //visibleCellArray和playingCellArray对比
         var resultArray = Array<SPCHomeListCollectionCell>()
-        for newCell in allCellArray {
+        for newCell in visibleCellArray {
             if !self.playingCellArray.contains(newCell) {//不是同一个才重新创建
                 //进一步销毁播放器
                 if newCell.playerView != nil {
@@ -172,22 +181,7 @@ class YYManyCellReuseController: UIViewController {
 extension YYManyCellReuseController: UIScrollViewDelegate{
     //开始滚动(只做销毁,当滑动停止的时候才创建)
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //获取当前可见的cell
-        let visibleCellArray = self.listCollectionView.visibleCells
-        //visibleCellArray和playingCellArray对比
-        for playingCell in self.playingCellArray {
-            if playingCell != nil {
-                if !visibleCellArray.contains(playingCell!) {
-                    //播放器销毁
-                    playingCell?.playerView?.closeTimer()
-                    playingCell?.playerView?.removeFromSuperview()
-                    playingCell?.playerView = nil
-                    //playingCell销毁
-                    var tempPlayingCell = playingCell
-                    tempPlayingCell = nil
-                }
-            }
-        }
+        self.scrollViewScroll()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
