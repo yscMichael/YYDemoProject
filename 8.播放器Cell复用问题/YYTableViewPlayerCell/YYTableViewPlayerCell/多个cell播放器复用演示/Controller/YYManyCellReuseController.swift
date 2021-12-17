@@ -6,6 +6,13 @@
 //
 
 import UIKit
+//MARK:- 常量 -
+///最大y
+var SPCMaxY: CGFloat = 0
+///最小y
+var SPCMinY: CGFloat = 0
+///参考间距
+let SPCMargin: CGFloat = 50
 
 class YYManyCellReuseController: UIViewController {
     //MARK: - 属性 -
@@ -66,8 +73,30 @@ class YYManyCellReuseController: UIViewController {
     
     //初始化数据
     func initData() -> () {
+        //1、数据源
         for index in 0..<5*15 {
             self.dataSource.append("\(index)---title")
+        }
+        //2、计算最大y和最小y
+        SPCMinY = 0
+        SPCMaxY = ScreenHeight - NavgationBarHeight - StatusBarHeight
+        print("最大Y---\(SPCMaxY)----最小Y----\(SPCMinY)")
+        //添加标签
+        let minView = UIView.init(frame: CGRect.zero)
+        minView.backgroundColor = UIColor.red
+        self.view.addSubview(minView)
+        minView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(SPCMinY)
+            make.height.equalTo(5)
+        }
+        let maxView = UIView.init(frame: CGRect.zero)
+        maxView.backgroundColor = UIColor.red
+        self.view.addSubview(maxView)
+        maxView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(SPCMaxY - 5)
+            make.height.equalTo(5)
         }
     }
     
@@ -85,10 +114,26 @@ class YYManyCellReuseController: UIViewController {
         for cell in visiableCellArray {
             let tempCell = cell as! SPCHomeListCollectionCell
             print("可见cell------\(tempCell.nameLabel.text ?? "")")
-            resultArray.append(tempCell)
+            if self.judgeVisiablePosition(cell: tempCell) {
+                resultArray.append(tempCell)
+            }
         }
         //3、直接返回
         return resultArray
+    }
+    
+    //MARK:进一步判断在可见区域的位置
+    func judgeVisiablePosition(cell: SPCHomeListCollectionCell) ->Bool {
+        //1、计算cell的中心点
+        let cellCenter = cell.superview!.convert(cell.center, to: self.view)
+        //2、判断中心点是否在SPCMinX和SPCMaxY之间
+        if (cellCenter.y > SPCMinY) && (cellCenter.y < SPCMaxY) {
+            print("区域-----Yes---\(cell.nameLabel.text ?? "")---\(cellCenter.y)")
+            return true
+        }else{
+            print("区域-----No---\(cell.nameLabel.text ?? "")---\(cellCenter.y)")
+            return false
+        }
     }
     
     //MARK:初始化播放cell
@@ -102,6 +147,13 @@ class YYManyCellReuseController: UIViewController {
             //添加到目标cell并保存cell
             cell.playerView = playView
             cell.addSubview(playView)
+            //重新布局方便观察
+            playView.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(0)
+                make.bottom.equalToSuperview().offset(0)
+                make.width.equalTo(100)
+                make.height.equalTo(50)
+            }
             self.playingCellArray.append(cell)
             //开始播放
             playView.beginTimer()

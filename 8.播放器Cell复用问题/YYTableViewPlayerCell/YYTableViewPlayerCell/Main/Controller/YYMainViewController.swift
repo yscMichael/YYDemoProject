@@ -13,6 +13,8 @@ let ScreenWidth = UIScreen.main.bounds.size.width
 let ScreenHeight = UIScreen.main.bounds.size.height
 /// 导航栏高度:通用
 let NavgationBarHeight = UINavigationController().navigationBar.frame.size.height
+/// 状态栏高度
+let StatusBarHeight = UIApplication.shared.statusBarFrame.height
 
 class YYMainViewController: UIViewController {
     //MARK: - 属性 -
