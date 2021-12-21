@@ -120,6 +120,8 @@ class YYSystemViewController: UIViewController {
         let tempWidth = (SCREEN_WIDTH - 50)/4
         let tempHeight = 85
         flowLayout.itemSize = CGSize(width: tempWidth, height: CGFloat(tempHeight))
+        //设置headerView大小
+        flowLayout.headerReferenceSize = CGSize(width: tempWidth, height: 260)
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 0.1
@@ -133,6 +135,7 @@ class YYSystemViewController: UIViewController {
         listCollectionView.delegate = self
         listCollectionView.dataSource = self
         listCollectionView.register(UINib.init(nibName: "YYCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YYCollectionViewCell")
+        listCollectionView.register(YYCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "YYCollectionReusableView")
         return listCollectionView
     }()
     
@@ -181,6 +184,13 @@ extension YYSystemViewController: UICollectionViewDataSource{
         self.dataSource.remove(at: sourceIndexPath.row)
         //插入目标位置
         self.dataSource.insert(sourceTitle, at: destinationIndexPath.row)
+    }
+    
+    //MARK:设置头
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "YYCollectionReusableView", for: indexPath)
+        
+         return headerView;
     }
 }
 

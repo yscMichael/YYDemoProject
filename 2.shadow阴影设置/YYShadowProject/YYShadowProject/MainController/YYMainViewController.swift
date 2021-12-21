@@ -33,7 +33,7 @@ class YYMainViewController: UIViewController {
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
         //阴影路径(避免离屏渲染)
         //shadowView.layer.shadowPath = UIBezierPath.init(roundedRect: shadowView.bounds, byRoundingCorners: UIRectCorner(rawValue: UIRectCorner.bottomLeft.rawValue | UIRectCorner.bottomRight.rawValue), cornerRadii: CGSize(width: 10, height: 10)).cgPath
-        shadowView.layer.shadowPath = UIBezierPath.init(rect: shadowView.bounds).cgPath
+        //shadowView.layer.shadowPath = UIBezierPath.init(rect: shadowView.bounds).cgPath
         view.addSubview(shadowView)
     }
     

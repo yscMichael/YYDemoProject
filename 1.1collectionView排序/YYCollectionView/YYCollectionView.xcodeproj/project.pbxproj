@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111E02FA2771A3280078A0DA /* YYCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E02F92771A3280078A0DA /* YYCollectionReusableView.swift */; };
 		11A71AB126FC23CB003D3743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71AB026FC23CB003D3743 /* AppDelegate.swift */; };
 		11A71AB526FC23CB003D3743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A71AB426FC23CB003D3743 /* ViewController.swift */; };
 		11A71AB826FC23CB003D3743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A71AB626FC23CB003D3743 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111E02F92771A3280078A0DA /* YYCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCollectionReusableView.swift; sourceTree = "<group>"; };
 		11A71AAD26FC23CB003D3743 /* YYCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A71AB026FC23CB003D3743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A71AB426FC23CB003D3743 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		111E02F72771A2FC0078A0DA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				11A85A54270FE8100038CBD7 /* YYCollectionViewCell.swift */,
+				11A85A55270FE8100038CBD7 /* YYCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		111E02F82771A3030078A0DA /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				111E02F92771A3280078A0DA /* YYCollectionReusableView.swift */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
 		11A71AA426FC23CB003D3743 = {
 			isa = PBXGroup;
 			children = (
@@ -183,8 +202,8 @@
 		11A85A53270FE7F40038CBD7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				11A85A54270FE8100038CBD7 /* YYCollectionViewCell.swift */,
-				11A85A55270FE8100038CBD7 /* YYCollectionViewCell.xib */,
+				111E02F82771A3030078A0DA /* HeaderView */,
+				111E02F72771A2FC0078A0DA /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +398,7 @@
 				11A85A88270FEBFA0038CBD7 /* ConstraintPriority.swift in Sources */,
 				11A85A95270FEBFA0038CBD7 /* ConstraintRelation.swift in Sources */,
 				11A71AB126FC23CB003D3743 /* AppDelegate.swift in Sources */,
+				111E02FA2771A3280078A0DA /* YYCollectionReusableView.swift in Sources */,
 				11A85A87270FEBFA0038CBD7 /* ConstraintMakerExtendable.swift in Sources */,
 				11A85A89270FEBFA0038CBD7 /* ConstraintInsetTarget.swift in Sources */,
 				11A85A9A270FEBFA0038CBD7 /* Debugging.swift in Sources */,
