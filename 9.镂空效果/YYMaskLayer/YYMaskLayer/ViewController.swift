@@ -25,11 +25,11 @@ class ViewController: UIViewController {
         //测试贝塞尔曲线
         //self.testAppendPath()
         //圆形镂空
-        //self.addUIBezierPathZero()
+        self.addUIBezierPathZero()
         //矩形镂空
         //self.addUIBezierPathRect()
         //多个点镂空
-        self.addUIBezierPathMany()
+        //self.addUIBezierPathMany()
     }
     
     //布局子View
@@ -130,6 +130,9 @@ class ViewController: UIViewController {
         let maskLayer = CAShapeLayer.init()
         maskLayer.path = bezierPath.cgPath
         maskLayer.fillRule = .evenOdd
+        //设置描边颜色
+        maskLayer.lineWidth = 1
+        maskLayer.strokeColor = UIColor.red.cgColor
         //5、mask设置
         maskView.layer.mask = maskLayer
     }
